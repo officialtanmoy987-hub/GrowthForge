@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GrowthForge — Featured Projects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#07070d;
+    --void-2:#0c0c18;
+    --card:rgba(255,255,255,0.035);
+    --card-hover:rgba(255,255,255,0.06);
+    --border:rgba(148,163,255,0.14);
+    --border-hover:rgba(168,150,255,0.5);
+    --blue:#4f7dff;
+    --purple:#a855f7;
+    --text:#eef0fb;
+    --muted:#8b8ea8;
+    --muted-2:#5f6280;
+    --mono: 'JetBrains Mono', monospace;
+    --display:'Sora', sans-serif;
+    --body:'Inter', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--void);
+    color:var(--text);
+    font-family:var(--body);
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{position:relative; max-width:1280px; margin:0 auto; padding:0 32px;}
+
+  /* ---------- Ambient blobs ---------- */
+  .blob-field{position:fixed; inset:0; z-index:0; overflow:hidden; pointer-events:none;}
+  .blob{position:absolute; border-radius:50%; filter:blur(90px); opacity:0.35; will-change:transform;}
+  .blob-a{width:520px; height:520px; background:radial-gradient(circle, var(--blue), transparent 70%); top:-120px; left:-100px;}
+  .blob-b{width:460px; height:460px; background:radial-gradient(circle, var(--purple), transparent 70%); top:40%; right:-140px;}
+  .blob-c{width:400px; height:400px; background:radial-gradient(circle, var(--blue), transparent 70%); bottom:-160px; left:30%;}
+
+  section.projects-section{position:relative; z-index:1; padding:120px 0 60px;}
+
+  /* ---------- Header ---------- */
+  .section-head{text-align:center; max-width:640px; margin:0 auto 88px;}
+  .eyebrow{
+    font-family:var(--mono); font-size:12px; letter-spacing:0.22em; text-transform:uppercase;
+    color:var(--blue); display:inline-flex; align-items:center; gap:10px; margin-bottom:22px;
+  }
+  .eyebrow::before, .eyebrow::after{content:''; width:24px; height:1px; background:linear-gradient(90deg, transparent, var(--blue));}
+  .eyebrow::after{background:linear-gradient(90deg, var(--blue), transparent);}
+  h2.section-title{
+    font-family:var(--display); font-weight:700; font-size:clamp(38px, 5vw, 60px);
+    line-height:1.08; letter-spacing:-0.02em;
+    background:linear-gradient(180deg, #ffffff 30%, #b8bce0 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    margin-bottom:20px;
+  }
+  .section-sub{color:var(--muted); font-size:17px; line-height:1.6; font-weight:400;}
+
+  /* ---------- Stats ---------- */
+  .stats-row{
+    display:grid; grid-template-columns:repeat(5, 1fr); gap:1px;
+    background:var(--border); border:1px solid var(--border); border-radius:20px;
+    overflow:hidden; margin-bottom:110px;
+  }
+  .stat{
+    background:var(--void-2); padding:34px 20px; text-align:center;
+    display:flex; flex-direction:column; gap:8px; align-items:center;
+  }
+  .stat-num{
+    font-family:var(--display); font-weight:800; font-size:clamp(26px,3vw,36px);
+    background:linear-gradient(120deg, var(--blue), var(--purple));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .stat-label{font-size:12.5px; color:var(--muted); font-weight:500; letter-spacing:0.01em;}
+
+  /* ---------- Project grid ---------- */
+  .projects-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:28px; margin-bottom:120px;}
+  .project-card{
+    grid-column:span 1;
+    position:relative;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:0;
+    overflow:hidden;
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    transition:transform 0.5s cubic-bezier(.2,.8,.2,1), border-color 0.5s ease, box-shadow 0.5s ease;
+    opacity:0; transform:translateY(28px);
+  }
+  .project-card.in-view{opacity:1; transform:translateY(0);}
+  .project-card:hover{
+    transform:translateY(-8px);
+    border-color:var(--border-hover);
+    box-shadow:0 24px 60px -20px rgba(79,125,255,0.35), 0 0 0 1px rgba(168,150,255,0.15);
+  }
+  .project-card.wide{grid-column:span 2;}
+
+  .card-preview{
+    position:relative; height:230px; overflow:hidden;
+    border-bottom:1px solid var(--border);
+  }
+  .browser-chrome{
+    position:absolute; inset:0; display:flex; flex-direction:column;
+  }
+  .chrome-bar{
+    display:flex; align-items:center; gap:8px; padding:10px 14px;
+    background:rgba(10,10,20,0.75); border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  .chrome-dot{width:8px; height:8px; border-radius:50%; background:#3a3d55;}
+  .chrome-url{
+    flex:1; margin-left:8px; font-family:var(--mono); font-size:11px; color:var(--muted-2);
+    background:rgba(255,255,255,0.03); border-radius:6px; padding:4px 10px;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .chrome-body{
+    flex:1; position:relative; display:flex; align-items:center; justify-content:center;
+    transition:transform 0.7s cubic-bezier(.2,.8,.2,1);
+  }
+  .project-card:hover .chrome-body{transform:scale(1.06);}
+  .chrome-mark{
+    font-family:var(--display); font-weight:800; font-size:34px; color:rgba(255,255,255,0.92);
+    letter-spacing:-0.01em; z-index:1;
+  }
+  .chrome-mark span{font-weight:400; opacity:0.6; font-size:0.6em; display:block; margin-top:4px; font-family:var(--mono); letter-spacing:0.08em;}
+
+  .badge{
+    position:absolute; top:14px; right:14px; z-index:2;
+    font-family:var(--mono); font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase;
+    padding:6px 12px; border-radius:100px;
+    background:rgba(7,7,13,0.6); border:1px solid rgba(255,255,255,0.18);
+    backdrop-filter:blur(6px); color:var(--text);
+  }
+
+  .card-body{padding:28px 28px 26px;}
+  .card-industry{font-family:var(--mono); font-size:11px; color:var(--purple); letter-spacing:0.06em; text-transform:uppercase; margin-bottom:10px;}
+  .card-title{font-family:var(--display); font-weight:700; font-size:22px; margin-bottom:10px; letter-spacing:-0.01em;}
+  .card-desc{font-size:14.5px; line-height:1.65; color:var(--muted); margin-bottom:20px;}
+
+  .tag-row{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px;}
+  .tag{
+    font-family:var(--mono); font-size:11px; color:var(--muted); padding:5px 10px;
+    border:1px solid var(--border); border-radius:6px; background:rgba(255,255,255,0.02);
+  }
+
+  .service-list{display:flex; flex-wrap:wrap; gap:6px 16px; margin-bottom:24px;}
+  .service-item{font-size:12.5px; color:var(--muted-2); display:flex; align-items:center; gap:6px;}
+  .service-item::before{content:''; width:4px; height:4px; border-radius:50%; background:var(--blue); flex-shrink:0;}
+
+  .card-footer{display:flex; align-items:center; justify-content:space-between; padding-top:18px; border-top:1px solid var(--border);}
+  .visit-btn{
+    display:inline-flex; align-items:center; gap:8px; font-size:13.5px; font-weight:600;
+    color:var(--text); text-decoration:none; padding:10px 18px; border-radius:100px;
+    background:linear-gradient(120deg, rgba(79,125,255,0.15), rgba(168,85,247,0.15));
+    border:1px solid var(--border-hover);
+    transition:gap 0.3s ease, background 0.3s ease;
+  }
+  .visit-btn:hover{gap:12px; background:linear-gradient(120deg, rgba(79,125,255,0.3), rgba(168,85,247,0.3));}
+  .visit-btn svg{transition:transform 0.3s ease;}
+  .visit-btn:hover svg{transform:translate(2px,-2px);}
+
+  @media (max-width: 860px){
+    .projects-grid{grid-template-columns:1fr;}
+    .project-card.wide{grid-column:span 1;}
+    .stats-row{grid-template-columns:repeat(2, 1fr);}
+  }
+
+  /* ---------- Trust section ---------- */
+  .trust-section{position:relative; z-index:1; padding:20px 0 100px;}
+  .trust-head{text-align:center; margin-bottom:52px;}
+  .trust-title{font-family:var(--display); font-weight:700; font-size:clamp(26px,3vw,34px); letter-spacing:-0.01em;}
+  .trust-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:18px;}
+  .trust-card{
+    display:flex; align-items:center; gap:14px; padding:20px 22px;
+    background:var(--card); border:1px solid var(--border); border-radius:14px;
+    opacity:0; transform:translateY(18px); transition:all 0.6s ease;
+  }
+  .trust-card.in-view{opacity:1; transform:translateY(0);}
+  .trust-card:hover{border-color:var(--border-hover); background:var(--card-hover);}
+  .trust-icon{
+    width:34px; height:34px; flex-shrink:0; border-radius:9px;
+    background:linear-gradient(135deg, var(--blue), var(--purple));
+    display:flex; align-items:center; justify-content:center; font-size:15px; color:#fff; font-weight:700;
+  }
+  .trust-label{font-size:14.5px; font-weight:500;}
+  @media (max-width:860px){.trust-grid{grid-template-columns:1fr;}}
+
+  /* ---------- CTA ---------- */
+  .cta-section{position:relative; z-index:1; padding:20px 0 140px;}
+  .cta-card{
+    position:relative; text-align:center; padding:80px 40px; border-radius:28px;
+    border:1px solid var(--border-hover); overflow:hidden;
+    background:linear-gradient(180deg, rgba(79,125,255,0.06), rgba(168,85,247,0.06));
+  }
+  .cta-glow{position:absolute; width:600px; height:300px; left:50%; top:-100px; transform:translateX(-50%);
+    background:radial-gradient(ellipse, rgba(168,150,255,0.35), transparent 70%); filter:blur(40px); pointer-events:none;}
+  .cta-title{font-family:var(--display); font-weight:800; font-size:clamp(30px,4vw,46px); letter-spacing:-0.02em; margin-bottom:18px; position:relative;}
+  .cta-text{max-width:560px; margin:0 auto 36px; color:var(--muted); font-size:16px; line-height:1.7; position:relative;}
+  .cta-buttons{display:flex; gap:16px; justify-content:center; flex-wrap:wrap; position:relative;}
+  .btn-primary{
+    font-family:var(--body); font-weight:600; font-size:15px; color:#07070d; text-decoration:none;
+    padding:16px 32px; border-radius:100px; background:linear-gradient(120deg, #fff, #d6d9f5);
+    transition:transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 12px 30px -8px rgba(255,255,255,0.3);}
+  .btn-secondary{
+    font-family:var(--body); font-weight:600; font-size:15px; color:var(--text); text-decoration:none;
+    padding:16px 32px; border-radius:100px; border:1px solid var(--border-hover); background:transparent;
+    transition:background 0.3s ease, transform 0.3s ease;
+  }
+  .btn-secondary:hover{background:rgba(255,255,255,0.06); transform:translateY(-2px);}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="blob-field">
+  <div class="blob blob-a" data-depth="0.03"></div>
+  <div class="blob blob-b" data-depth="0.05"></div>
+  <div class="blob blob-c" data-depth="0.02"></div>
+</div>
+
+<section class="projects-section">
+  <div class="wrap">
+
+    <div class="section-head">
+      <div class="eyebrow">Selected Work</div>
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-sub">Helping startups and businesses launch beautiful, high-performing digital products.</p>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat"><div class="stat-num" data-count="5" data-suffix="+">0</div><div class="stat-label">Completed Client Projects</div></div>
+      <div class="stat"><div class="stat-num" data-count="4" data-suffix="">0</div><div class="stat-label">Industries Served</div></div>
+      <div class="stat"><div class="stat-num" data-count="100" data-suffix="%">0</div><div class="stat-label">Responsive Websites</div></div>
+      <div class="stat"><div class="stat-num" data-static="AI">AI</div><div class="stat-label">Ready Solutions</div></div>
+      <div class="stat"><div class="stat-num" data-static="24×7">24×7</div><div class="stat-label">Client Support</div></div>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- Project 1 -->
+      <div class="project-card wide">
+        <div class="card-preview" style="background:linear-gradient(135deg,#3a1f0f,#5c2e12);">
+          <div class="badge">Food Tech</div>
+          <div class="browser-chrome">
+            <div class="chrome-bar">
+              <div class="chrome-dot"></div><div class="chrome-dot"></div><div class="chrome-dot"></div>
+              <div class="chrome-url">quickbitepage.netlify.app</div>
+            </div>
+            <div class="chrome-body" style="background:radial-gradient(circle at 30% 30%, rgba(255,140,60,0.35), transparent 60%);">
+              <div class="chrome-mark">QuickBite<span>Food Delivery</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-industry">Food Delivery</div>
+          <div class="card-title">QuickBite</div>
+          <p class="card-desc">A modern food delivery landing page designed for fast customer conversions, intuitive navigation, and a mobile-first ordering experience.</p>
+          <div class="tag-row"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+          <div class="service-list">
+            <span class="service-item">UI/UX Design</span>
+            <span class="service-item">Landing Page</span>
+            <span class="service-item">Branding</span>
+            <span class="service-item">Responsive Development</span>
+          </div>
+          <div class="card-footer">
+            <span style="font-size:12px; color:var(--muted-2); font-family:var(--mono);">01 / 05</span>
+            <a class="visit-btn" href="https://quickbitepage.netlify.app/" target="_blank" rel="noopener">
+              Visit Website
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card">
+        <div class="card-preview">
+          <div class="badge">Healthcare</div>
+          <div class="browser-chrome">
+            <div class="chrome-bar">
+              <div class="chrome-dot"></div><div class="chrome-dot"></div><div class="chrome-dot"></div>
+              <div class="chrome-url">caretakerjaipur.netlify.app</div>
+            </div>
+            <div class="chrome-body" style="background:radial-gradient(circle at 30% 30%, rgba(60,200,190,0.3), transparent 60%);">
+              <div class="chrome-mark">CareTaker<span>Jaipur</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-industry">Healthcare</div>
+          <div class="card-title">CareTaker Jaipur</div>
+          <p class="card-desc">A healthcare booking platform connecting families with verified caregivers and home healthcare professionals through an intuitive online booking experience.</p>
+          <div class="tag-row"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+          <div class="service-list">
+            <span class="service-item">Website Design</span>
+            <span class="service-item">Booking Flow</span>
+            <span class="service-item">Responsive Development</span>
+            <span class="service-item">Brand Identity</span>
+          </div>
+          <div class="card-footer">
+            <span style="font-size:12px; color:var(--muted-2); font-family:var(--mono);">02 / 05</span>
+            <a class="visit-btn" href="https://caretakerjaipur.netlify.app/" target="_blank" rel="noopener">
+              Visit Website
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card">
+        <div class="card-preview">
+          <div class="badge">Real Estate</div>
+          <div class="browser-chrome">
+            <div class="chrome-bar">
+              <div class="chrome-dot"></div><div class="chrome-dot"></div><div class="chrome-dot"></div>
+              <div class="chrome-url">a-k-luxury-home.netlify.app</div>
+            </div>
+            <div class="chrome-body" style="background:radial-gradient(circle at 30% 30%, rgba(212,175,90,0.28), transparent 60%);">
+              <div class="chrome-mark">AK Luxury<span>Real Estate</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-industry">Luxury Real Estate</div>
+          <div class="card-title">AK Luxury Home</div>
+          <p class="card-desc">A premium real estate website crafted for showcasing luxury homes with elegant visuals, immersive layouts, and modern interactions.</p>
+          <div class="tag-row"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+          <div class="service-list">
+            <span class="service-item">Luxury UI Design</span>
+            <span class="service-item">Responsive Website</span>
+            <span class="service-item">Property Showcase</span>
+          </div>
+          <div class="card-footer">
+            <span style="font-size:12px; color:var(--muted-2); font-family:var(--mono);">03 / 05</span>
+            <a class="visit-btn" href="https://a-k-luxury-home.netlify.app/" target="_blank" rel="noopener">
+              Visit Website
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="project-card">
+        <div class="card-preview">
+          <div class="badge">HealthTech</div>
+          <div class="browser-chrome">
+            <div class="chrome-bar">
+              <div class="chrome-dot"></div><div class="chrome-dot"></div><div class="chrome-dot"></div>
+              <div class="chrome-url">medi-trusty.vercel.app</div>
+            </div>
+            <div class="chrome-body" style="background:radial-gradient(circle at 30% 30%, rgba(79,125,255,0.32), transparent 60%);">
+              <div class="chrome-mark">Medi Trusty<span>HealthTech</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-industry">Healthcare Technology</div>
+          <div class="card-title">Medi Trusty</div>
+          <p class="card-desc">A modern healthcare platform designed to simplify medical services through a clean user interface and intuitive digital experience.</p>
+          <div class="tag-row"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+          <div class="service-list">
+            <span class="service-item">Healthcare Website</span>
+            <span class="service-item">UI Design</span>
+            <span class="service-item">Responsive Development</span>
+          </div>
+          <div class="card-footer">
+            <span style="font-size:12px; color:var(--muted-2); font-family:var(--mono);">04 / 05</span>
+            <a class="visit-btn" href="https://medi-trusty.vercel.app/" target="_blank" rel="noopener">
+              Visit Website
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="project-card wide">
+        <div class="card-preview">
+          <div class="badge">HR &amp; Recruitment</div>
+          <div class="browser-chrome">
+            <div class="chrome-bar">
+              <div class="chrome-dot"></div><div class="chrome-dot"></div><div class="chrome-dot"></div>
+              <div class="chrome-url">hrk-home-services-job-portal.netlify.app</div>
+            </div>
+            <div class="chrome-body" style="background:radial-gradient(circle at 30% 30%, rgba(168,85,247,0.3), transparent 60%);">
+              <div class="chrome-mark">HRK Job Portal<span>Recruitment</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-industry">Recruitment</div>
+          <div class="card-title">HRK Home Services Job Portal</div>
+          <p class="card-desc">A recruitment and job portal that connects employers with skilled professionals using an easy-to-use application workflow.</p>
+          <div class="tag-row"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+          <div class="service-list">
+            <span class="service-item">Job Portal</span>
+            <span class="service-item">Responsive Website</span>
+            <span class="service-item">Business Platform</span>
+          </div>
+          <div class="card-footer">
+            <span style="font-size:12px; color:var(--muted-2); font-family:var(--mono);">05 / 05</span>
+            <a class="visit-btn" href="https://hrk-home-services-job-portal.netlify.app/" target="_blank" rel="noopener">
+              Visit Website
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H8M17 7V16"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="trust-section">
+  <div class="wrap">
+    <div class="trust-head">
+      <h3 class="trust-title">Trusted by Growing Businesses</h3>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card"><div class="trust-icon">✓</div><div class="trust-label">Premium UI/UX Design</div></div>
+      <div class="trust-card"><div class="trust-icon">✓</div><div class="trust-label">Fast &amp; Responsive Development</div></div>
+      <div class="trust-card"><div class="trust-icon">✓</div><div class="trust-label">SEO-Friendly Websites</div></div>
+      <div class="trust-card"><div class="trust-icon">✓</div><div class="trust-label">AI Integration</div></div>
+      <div class="trust-card"><div class="trust-icon">✓</div><div class="trust-label">Secure &amp; Scalable Architecture</div></div>
+      <div class="trust-card"><div class="trust-icon">✓</div><div class="trust-label">Ongoing Technical Support</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="wrap">
+    <div class="cta-card">
+      <div class="cta-glow"></div>
+      <h3 class="cta-title">Ready to Build Something Exceptional?</h3>
+      <p class="cta-text">Whether you're launching a startup, growing your business, or modernizing your online presence, GrowthForge delivers high-performance websites and AI-powered digital solutions tailored to your goals.</p>
+      <div class="cta-buttons">
+        <a href="#start" class="btn-primary">Start Your Project</a>
+        <a href="#consult" class="btn-secondary">Schedule a Free Consultation</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.project-card, .trust-card');
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in-view');
+        observer.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el=>observer.observe(el));
+
+  // Animated counters
+  const counters = document.querySelectorAll('[data-count]');
+  const counterObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        const el = entry.target;
+        const target = parseFloat(el.dataset.count);
+        const suffix = el.dataset.suffix || '';
+        const duration = 1400;
+        const start = performance.now();
+        function tick(now){
+          const p = Math.min((now-start)/duration, 1);
+          const eased = 1 - Math.pow(1-p, 3);
+          el.textContent = Math.round(target*eased) + suffix;
+          if(p<1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+        counterObserver.unobserve(el);
+      }
+    });
+  }, {threshold:0.5});
+  counters.forEach(el=>counterObserver.observe(el));
+
+  // Mouse parallax on blobs
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!prefersReduced){
+    const blobs = document.querySelectorAll('.blob');
+    window.addEventListener('mousemove', (e)=>{
+      const cx = e.clientX - window.innerWidth/2;
+      const cy = e.clientY - window.innerHeight/2;
+      blobs.forEach(b=>{
+        const depth = parseFloat(b.dataset.depth);
+        b.style.transform = `translate(${cx*depth}px, ${cy*depth}px)`;
+      });
+    });
+  }
+</script>
+
+</body>
+</html>
