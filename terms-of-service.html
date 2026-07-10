@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta name="description" content="Read GrowthForge's Terms of Service to understand client responsibilities, payments, licensing, and liability policies."/>
+  <title>Terms of Service | GrowthForge</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary-fixed-dim": "#b4c5ff",
+            "surface-bright": "#353944",
+            "outline-variant": "#434655",
+            "tertiary": "#4cd7f6",
+            "surface-container": "#1c1f2a",
+            "on-secondary-container": "#c9aeff",
+            "error-container": "#93000a",
+            "background": "#0f131d",
+            "on-surface-variant": "#c3c6d7",
+            "on-surface": "#dfe2f1",
+            "on-tertiary-fixed": "#001f26",
+            "tertiary-container": "#00788c",
+            "surface": "#0f131d",
+            "primary-fixed": "#dbe1ff",
+            "inverse-surface": "#dfe2f1",
+            "primary-container": "#2563eb",
+            "on-secondary": "#3f008e",
+            "on-error": "#690005",
+            "surface-container-high": "#262a35",
+            "secondary-container": "#6001d1",
+            "secondary": "#d2bbff",
+            "on-background": "#dfe2f1",
+            "surface-dim": "#0f131d",
+            "on-primary": "#002a78",
+            "on-primary-fixed": "#00174b",
+            "secondary-fixed-dim": "#d2bbff",
+            "on-tertiary-container": "#d7f6ff",
+            "secondary-fixed": "#eaddff",
+            "outline": "#8d90a0",
+            "on-primary-container": "#eeefff",
+            "inverse-primary": "#0053db",
+            "surface-tint": "#b4c5ff",
+            "on-secondary-fixed": "#25005a",
+            "on-primary-fixed-variant": "#003ea8",
+            "on-error-container": "#ffdad6",
+            "on-tertiary": "#003640",
+            "on-secondary-fixed-variant": "#5a00c6",
+            "surface-container-lowest": "#0a0e18",
+            "primary": "#b4c5ff",
+            "tertiary-fixed-dim": "#4cd7f6",
+            "tertiary-fixed": "#acedff",
+            "inverse-on-surface": "#2c303b",
+            "surface-container-low": "#171b26",
+            "on-tertiary-fixed-variant": "#004e5c",
+            "error": "#ffb4ab",
+            "surface-variant": "#313540",
+            "surface-container-highest": "#313540"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "unit": "4px",
+            "margin-mobile": "20px",
+            "margin-desktop": "64px",
+            "container-max": "1280px",
+            "stack-md": "24px",
+            "gutter": "32px",
+            "stack-lg": "48px",
+            "stack-sm": "12px"
+          },
+          "fontFamily": {
+            "display-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "headline-xl": ["Inter"],
+            "headline-lg": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-caps": ["JetBrains Mono"],
+            "headline-md": ["Inter"],
+            "display-lg-mobile": ["Inter"]
+          },
+          "fontSize": {
+            "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+            "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+            "headline-xl": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+            "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+            "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400"}],
+            "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "500"}],
+            "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+            "display-lg-mobile": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "800"}]
+          }
+        },
+      },
+    }
+  </script>
+  <style>
+    body {
+      background-color: #0f131d;
+      color: #dfe2f1;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    .glass-card:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+    
+    .glass-nav {
+      background: rgba(15, 19, 29, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .sidebar-link.active {
+      color: #b4c5ff;
+      border-left-color: #b4c5ff;
+      background: rgba(180, 197, 255, 0.05);
+      padding-left: 1.25rem;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f131d;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #313540;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #b4c5ff;
+    }
+
+    /* Print styling overrides */
+    @media print {
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 12pt;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .print-only {
+        display: block !important;
+      }
+      .glass-card {
+        background: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border: none !important;
+        border-bottom: 1px solid #e2e8f0 !important;
+        box-shadow: none !important;
+        padding: 1.5rem 0 !important;
+        margin-bottom: 0 !important;
+        page-break-inside: avoid;
+      }
+      h1, h2, h3, h4 {
+        color: #000000 !important;
+        page-break-after: avoid;
+      }
+      p, li, span, td {
+        color: #333333 !important;
+      }
+      a {
+        color: #002a78 !important;
+        text-decoration: underline !important;
+      }
+      a[href^="http"]::after {
+        content: " (" attr(href) ")";
+        font-size: 90%;
+        color: #666666;
+      }
+      nav, aside, footer, .print-btn {
+        display: none !important;
+      }
+      main {
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .container {
+        max-width: 100% !important;
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      .grid {
+        display: block !important;
+      }
+    }
+  </style>
+</head>
+<body class="font-body-md selection:bg-primary selection:text-on-primary">
+
+  <!-- Sticky Navbar -->
+  <nav class="fixed top-0 inset-x-0 z-50 glass-nav h-20 no-print">
+    <div class="max-w-7xl mx-auto px-6 h-full flex justify-between items-center">
+      <a href="index.html" class="flex items-center gap-3 font-bold text-white hover:opacity-90 transition-opacity">
+        <img alt="GrowthForge logo" class="h-11 w-11 rounded-xl object-contain" src="./GrowthForge.jpeg"/>
+        <span class="font-headline-md text-xl font-bold tracking-tight">GrowthForge</span>
+      </a>
+      <div class="flex items-center gap-4">
+        <button onclick="window.print()" class="print-btn flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-sm font-semibold text-white transition-all">
+          <span class="material-symbols-outlined text-sm">print</span>
+          Print Terms
+        </button>
+        <a href="index.html" class="px-5 py-2 rounded-full bg-primary text-on-primary font-bold text-sm hover:scale-105 active:scale-95 transition-all">
+          Back to Home
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="relative isolate overflow-hidden pt-36 pb-12 px-6 no-print">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(124,58,237,0.1),transparent_40%)] pointer-events-none"></div>
+    <div class="max-w-5xl mx-auto text-center">
+      <p class="font-mono text-xs uppercase tracking-[0.2em] text-secondary">Legal Framework</p>
+      <h1 class="mt-4 text-4xl md:text-5xl font-extrabold text-white tracking-tight">Terms of Service</h1>
+      <p class="mt-4 text-on-surface-variant max-w-2xl mx-auto text-sm leading-relaxed">
+        Please review the binding agreement terms that outline the conditions under which GrowthForge provides its services.
+      </p>
+    </div>
+  </header>
+
+  <!-- Main Grid Layout -->
+  <main class="max-w-7xl mx-auto px-6 pb-24">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-12 items-start">
+      
+      <!-- Sticky Table of Contents (Sidebar) -->
+      <aside class="lg:sticky lg:top-28 no-print lg:col-span-1">
+        <div class="glass-card p-6 rounded-2xl">
+          <h2 class="font-mono text-xs uppercase tracking-widest text-primary mb-4 pb-2 border-b border-white/5">Navigation</h2>
+          <ul class="space-y-1 text-sm text-on-surface-variant">
+            <li><a href="#acceptance" class="sidebar-link block py-2 border-l border-white/5 pl-4 transition-all hover:text-white">1. Acceptance</a></li>
+            <li><a href="#services" class="sidebar-link block py-2 border-l border-white/5 pl-4 transition-all hover:text-white">2. Our Services</a></li>
+            <li><a href="#client-responsibilities" class="sidebar-link block py-2 border-l border-white/5 pl-4 transition-all hover:text-white">3. Client Roles</a></li>
+            <li><a href="#payments" class="sidebar-link block py-2 border-l border-white/5 pl-4 transition-all hover:text-white">4. Payment Terms</a></li>
+            <li><a href="#intellectual-property" class="sidebar-link block py-2 border-l border-white/5 pl-4 transition-all hover:text-white">5. IP Licensing</a></li>
+            <li><a href="#timelines" class="sidebar-link block py-2 border-l border-white/5 pl-4 transition-all hover:text-white">6. Project Timelines</a></li>
+            <li><a href="#revisions" class="sidebar-link block py-2 border-l border-white/5 pl-4 transition-all hover:text-white">7. Revisions Policy</a></li>
+            <li><a href="#hosting-maintenance" class="sidebar-link block py-2 border-l border-white/5 pl-4 transition-all hover:text-white">8. Hosting & Care</a></li>
+            <li><a href="#liability" class="sidebar-link block py-2 border-l border-white/5 pl-4 transition-all hover:text-white">9. Liability limits</a></li>
+            <li><a href="#cancellation" class="sidebar-link block py-2 border-l border-white/5 pl-4 transition-all hover:text-white">10. Refunds Policy</a></li>
+            <li><a href="#privacy" class="sidebar-link block py-2 border-l border-white/5 pl-4 transition-all hover:text-white">11. Privacy Rules</a></li>
+            <li><a href="#changes-terms" class="sidebar-link block py-2 border-l border-white/5 pl-4 transition-all hover:text-white">12. Policy Updates</a></li>
+            <li><a href="#contact" class="sidebar-link block py-2 border-l border-white/5 pl-4 transition-all hover:text-white">13. Contact Info</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Scrollable Terms Content -->
+      <div class="lg:col-span-3 space-y-6 content-area">
+        
+        <!-- Printable header (only seen when printing) -->
+        <div class="hidden print-only mb-8">
+          <h1 class="text-3xl font-bold text-black">GrowthForge Terms of Service</h1>
+          <p class="text-sm text-gray-600 mt-2">Official corporate client agreement for custom web development and digital solutions.</p>
+        </div>
+
+        <!-- Section 1 -->
+        <section id="acceptance" class="glass-card p-8 rounded-3xl scroll-mt-28">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-primary text-2xl no-print">assignment_turned_in</span>
+            <h2 class="text-xl font-bold text-white print-title">1. Acceptance of Terms</h2>
+          </div>
+          <p class="text-on-surface-variant text-sm leading-relaxed">
+            By engaging GrowthForge for digital engineering services, booking consultations, or visiting our web platforms, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service. If you do not agree to these terms, you must immediately cease using our services.
+          </p>
+        </section>
+
+        <!-- Section 2 -->
+        <section id="services" class="glass-card p-8 rounded-3xl scroll-mt-28">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-primary text-2xl no-print">handyman</span>
+            <h2 class="text-xl font-bold text-white print-title">2. Services</h2>
+          </div>
+          <p class="text-on-surface-variant text-sm leading-relaxed mb-4">
+            GrowthForge offers custom digital performance engineering, software construction, and marketing services, which include:
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-on-surface-variant">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-xs text-secondary">check</span>
+              <span>Website Design & Development</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-xs text-secondary">check</span>
+              <span>Website Maintenance & Care Plans</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-xs text-secondary">check</span>
+              <span>Domain Hosting & SSL Setup</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-xs text-secondary">check</span>
+              <span>Digital Marketing & Branding</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-xs text-secondary">check</span>
+              <span>Search Engine Optimization (SEO)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-xs text-secondary">check</span>
+              <span>AI Automations & Workflows</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-xs text-secondary">check</span>
+              <span>Strategic Business Consulting</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-xs text-secondary">check</span>
+              <span>Performance & Speed Optimization</span>
+            </div>
+          </div>
+          <p class="text-on-surface-variant text-xs leading-relaxed mt-4 italic">
+            Please note that our services are dynamic and may evolve over time to leverage new tools and optimize project deliveries.
+          </p>
+        </section>
+
+        <!-- Section 3 -->
+        <section id="client-responsibilities" class="glass-card p-8 rounded-3xl scroll-mt-28">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-primary text-2xl no-print">groups</span>
+            <h2 class="text-xl font-bold text-white print-title">3. Client Responsibilities</h2>
+          </div>
+          <p class="text-on-surface-variant text-sm leading-relaxed mb-4">
+            To ensure successful project execution and delivery, clients agree to:
+          </p>
+          <ul class="space-y-2 text-sm text-on-surface-variant list-disc pl-5">
+            <li>Provide accurate, complete, and truthful information about their business requirements.</li>
+            <li>Supply all required project content, graphics, assets, and text assets in a timely manner according to project schedules.</li>
+            <li>Respect the agreed project payment schedules and milestone cycles.</li>
+            <li>Not misuse, reverse-engineer, overload, or break the platforms or staging setups developed by GrowthForge.</li>
+          </ul>
+        </section>
+
+        <!-- Section 4 -->
+        <section id="payments" class="glass-card p-8 rounded-3xl scroll-mt-28">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-primary text-2xl no-print">payments</span>
+            <h2 class="text-xl font-bold text-white print-title">4. Payments & Billing</h2>
+          </div>
+          <p class="text-on-surface-variant text-sm leading-relaxed mb-4">
+            The financial framework for projects is established in individual service agreements:
+          </p>
+          <ul class="space-y-2 text-sm text-on-surface-variant list-disc pl-5">
+            <li><strong>Project Pricing:</strong> Defined in custom quotes or chosen subscription packages (e.g., Growth Starter, Growth Pro, Growth Elite).</li>
+            <li><strong>Annual Renewal Charges:</strong> Covers hosting renewals, basic security maintenance, and support services.</li>
+            <li><strong>Hosting Renewals:</strong> Invoiced annually to keep domains, DNS, and hosting servers active.</li>
+            <li><strong>Maintenance Fees:</strong> Charges for ongoing content edits, code audits, or optimization updates.</li>
+            <li><strong>Additional Work:</strong> Custom modifications outside the initial project brief will be quoted and billed separately.</li>
+          </ul>
+          <p class="text-on-surface-variant text-xs leading-relaxed mt-4">
+            All invoices must be paid according to the timelines agreed upon in the project milestones. Late payments may cause automated project suspension.
+          </p>
+        </section>
+
+        <!-- Section 5 -->
+        <section id="intellectual-property" class="glass-card p-8 rounded-3xl scroll-mt-28">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-primary text-2xl no-print">copyright</span>
+            <h2 class="text-xl font-bold text-white print-title">5. Intellectual Property</h2>
+          </div>
+          <p class="text-on-surface-variant text-sm leading-relaxed mb-4">
+            Licensing and ownership rights of deliverables are managed as follows:
+          </p>
+          <ul class="space-y-2 text-sm text-on-surface-variant list-disc pl-5">
+            <li><strong>Client Ownership:</strong> Upon receipt of full and final payment, the client owns the unique website designs, copy, content, graphics, and custom front-end styling created specifically for their project.</li>
+            <li><strong>GrowthForge Proprietary Rights:</strong> GrowthForge retains ownership of all underlying code libraries, reusable templates, software frameworks, database structures, proprietary scripts, and custom integrations unless explicitly agreed otherwise in writing.</li>
+          </ul>
+        </section>
+
+        <!-- Section 6 -->
+        <section id="timelines" class="glass-card p-8 rounded-3xl scroll-mt-28">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-primary text-2xl no-print">schedule</span>
+            <h2 class="text-xl font-bold text-white print-title">6. Project Timelines</h2>
+          </div>
+          <p class="text-on-surface-variant text-sm leading-relaxed mb-4">
+            We aim to deliver all digital project solutions within estimated timelines (typically 5-10 business days for standard plans). However, final delivery timelines are dependent on:
+          </p>
+          <ul class="space-y-1 text-sm text-on-surface-variant list-disc pl-5">
+            <li>Overall complexity and custom system requirements.</li>
+            <li>Timeliness of client feedback, reviews, and design sign-offs.</li>
+            <li>Availability of requested copywriting text, media, and raw assets.</li>
+            <li>Additional design revisions or functionality expansion requests.</li>
+          </ul>
+        </section>
+
+        <!-- Section 7 -->
+        <section id="revisions" class="glass-card p-8 rounded-3xl scroll-mt-28">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-primary text-2xl no-print">rate_review</span>
+            <h2 class="text-xl font-bold text-white print-title">7. Revisions</h2>
+          </div>
+          <p class="text-on-surface-variant text-sm leading-relaxed">
+            The quantity of free revisions is defined explicitly in your selected service package. Additional revision rounds, post-approval changes, or layout redesign requests after project sign-off may incur supplementary design and development fees.
+          </p>
+        </section>
+
+        <!-- Section 8 -->
+        <section id="hosting-maintenance" class="glass-card p-8 rounded-3xl scroll-mt-28">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-primary text-2xl no-print">dns</span>
+            <h2 class="text-xl font-bold text-white print-title">8. Hosting & Maintenance</h2>
+          </div>
+          <p class="text-on-surface-variant text-sm leading-relaxed mb-4">
+            For projects hosted under our platform infrastructure:
+          </p>
+          <ul class="space-y-2 text-sm text-on-surface-variant list-disc pl-5">
+            <li>GrowthForge provides high-speed cloud hosting and server maintenance in accordance with your chosen subscription level.</li>
+            <li>While we select premium hosting environments (Vercel, Cloudflare, etc.) to target 99.9% uptime, downtime or service interruptions caused by these third-party cloud infrastructure providers are outside the direct control and liability of GrowthForge.</li>
+          </ul>
+        </section>
+
+        <!-- Section 9 -->
+        <section id="liability" class="glass-card p-8 rounded-3xl scroll-mt-28">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-primary text-2xl no-print">gavel</span>
+            <h2 class="text-xl font-bold text-white print-title">9. Limitation of Liability</h2>
+          </div>
+          <p class="text-on-surface-variant text-sm leading-relaxed mb-4">
+            To the maximum extent permitted by applicable law, GrowthForge is not responsible or liable for:
+          </p>
+          <ul class="space-y-2 text-sm text-on-surface-variant list-disc pl-5">
+            <li>Service disruptions or outages caused by third-party hosting, registrar, API, or database providers.</li>
+            <li>Fluctuations or changes in search engine rankings (SEO metrics) following launch or optimizations.</li>
+            <li>Copyright issues related to assets, copywriting text, or media files supplied directly by the client.</li>
+            <li>Any indirect business losses, lost sales, downtime costs, or customer conversion drops.</li>
+            <li>Delays in project execution caused by client response delays or inactivity.</li>
+          </ul>
+        </section>
+
+        <!-- Section 10 -->
+        <section id="cancellation" class="glass-card p-8 rounded-3xl scroll-mt-28">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-primary text-2xl no-print">cancel</span>
+            <h2 class="text-xl font-bold text-white print-title">10. Cancellation & Refunds</h2>
+          </div>
+          <p class="text-on-surface-variant text-sm leading-relaxed mb-4">
+            Refund parameters are calculated based on the project phase and efforts expended:
+          </p>
+          <ul class="space-y-2 text-sm text-on-surface-variant list-disc pl-5">
+            <li>Client-initiated cancellations must be submitted in writing.</li>
+            <li>Refunds for active projects are calculated proportionally, deducting for hours of engineering, design, or layout setup already completed.</li>
+            <li>Fully completed and delivered services, code assets, or deployed systems are non-refundable.</li>
+          </ul>
+        </section>
+
+        <!-- Section 11 -->
+        <section id="privacy" class="glass-card p-8 rounded-3xl scroll-mt-28">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-primary text-2xl no-print">lock</span>
+            <h2 class="text-xl font-bold text-white print-title">11. Privacy</h2>
+          </div>
+          <p class="text-on-surface-variant text-sm leading-relaxed">
+            Your use of our website, consultations, and services is also governed by our Privacy Policy, which details our data handling procedures. Please review the <a href="privacy-policy.html" class="text-primary underline hover:text-white transition-colors">Privacy Policy</a> to understand how we protect your personal information.
+          </p>
+        </section>
+
+        <!-- Section 12 -->
+        <section id="changes-terms" class="glass-card p-8 rounded-3xl scroll-mt-28">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-primary text-2xl no-print">history_edu</span>
+            <h2 class="text-xl font-bold text-white print-title">12. Changes to Terms</h2>
+          </div>
+          <p class="text-on-surface-variant text-sm leading-relaxed">
+            GrowthForge reserves the right to modify these Terms of Service at any time. Updates will be published on this page and will take effect immediately. Continued use of our platforms or services after changes are posted constitutes your acceptance of the updated terms.
+          </p>
+        </section>
+
+        <!-- Section 13 -->
+        <section id="contact" class="glass-card p-8 rounded-3xl scroll-mt-28">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-primary text-2xl no-print">support_agent</span>
+            <h2 class="text-xl font-bold text-white print-title">13. Contact Us</h2>
+          </div>
+          <p class="text-on-surface-variant text-sm leading-relaxed mb-6">
+            If you have questions, comments, or require clarification regarding these terms, please contact our contracts and compliance team:
+          </p>
+          <div class="p-6 bg-white/5 rounded-2xl border border-white/5 space-y-3 text-sm text-on-surface-variant">
+            <p class="font-bold text-white text-base">GrowthForge</p>
+            <p class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-xs text-primary">mail</span>
+              <span>Email: <a href="https://mail.google.com/mail/?view=cm&fs=1&to=contact@growthforge.in" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">contact@growthforge.in</a></span>
+            </p>
+            <p class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-xs text-primary">public</span>
+              <span>Website: <a href="https://www.growthforge.in" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">www.growthforge.in</a></span>
+            </p>
+          </div>
+        </section>
+
+        <!-- Date indicator -->
+        <div class="pt-8 text-center text-xs text-on-surface-variant/60">
+          <p id="last-updated-text">Last Updated: Loading...</p>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Simplified footer -->
+  <footer class="border-t border-white/5 bg-surface-container-lowest py-8 text-center text-xs text-on-surface-variant/40 no-print">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p>© 2026 GrowthForge. All rights reserved. Building digital growth with purpose.</p>
+      <div class="flex gap-6">
+        <a href="privacy-policy.html" class="hover:text-primary transition-colors">Privacy Policy</a>
+        <a href="index.html" class="hover:text-primary transition-colors">Back to Home</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Dynamic Last Updated date. Sets date based on current month/year of website environment
+    document.addEventListener("DOMContentLoaded", () => {
+      const lastUpdatedText = document.getElementById("last-updated-text");
+      const currentDate = new Date("2026-07-10T18:54:10+05:30");
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      const formattedDate = currentDate.toLocaleDateString('en-US', options);
+      lastUpdatedText.textContent = `Last Updated: ${formattedDate}`;
+    });
+
+    // Scrollspy navigation script
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".sidebar-link");
+
+    const scrollSpyOptions = {
+      root: null,
+      rootMargin: "0px 0px -60% 0px",
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute("id");
+          navLinks.forEach(link => {
+            if (link.getAttribute("href") === `#${id}`) {
+              link.classList.add("active");
+            } else {
+              link.classList.remove("active");
+            }
+          });
+        }
+      });
+    }, scrollSpyOptions);
+
+    sections.forEach(section => observer.observe(section));
+  </script>
+</body>
+</html>
