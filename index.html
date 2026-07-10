@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GrowthForge | Elite Performance Engineering</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "primary-fixed-dim": "#b4c5ff",
+            "surface-bright": "#353944",
+            "outline-variant": "#434655",
+            "tertiary": "#4cd7f6",
+            "surface-container": "#1c1f2a",
+            "on-secondary-container": "#c9aeff",
+            "error-container": "#93000a",
+            "background": "#0f131d",
+            "on-surface-variant": "#c3c6d7",
+            "on-surface": "#dfe2f1",
+            "on-tertiary-fixed": "#001f26",
+            "tertiary-container": "#00788c",
+            "surface": "#0f131d",
+            "primary-fixed": "#dbe1ff",
+            "inverse-surface": "#dfe2f1",
+            "primary-container": "#2563eb",
+            "on-secondary": "#3f008e",
+            "on-error": "#690005",
+            "surface-container-high": "#262a35",
+            "secondary-container": "#6001d1",
+            "secondary": "#d2bbff",
+            "on-background": "#dfe2f1",
+            "surface-dim": "#0f131d",
+            "on-primary": "#002a78",
+            "on-primary-fixed": "#00174b",
+            "secondary-fixed-dim": "#d2bbff",
+            "on-tertiary-container": "#d7f6ff",
+            "secondary-fixed": "#eaddff",
+            "outline": "#8d90a0",
+            "on-primary-container": "#eeefff",
+            "inverse-primary": "#0053db",
+            "surface-tint": "#b4c5ff",
+            "on-secondary-fixed": "#25005a",
+            "on-primary-fixed-variant": "#003ea8",
+            "on-error-container": "#ffdad6",
+            "on-tertiary": "#003640",
+            "on-secondary-fixed-variant": "#5a00c6",
+            "surface-container-lowest": "#0a0e18",
+            "primary": "#b4c5ff",
+            "tertiary-fixed-dim": "#4cd7f6",
+            "tertiary-fixed": "#acedff",
+            "inverse-on-surface": "#2c303b",
+            "surface-container-low": "#171b26",
+            "on-tertiary-fixed-variant": "#004e5c",
+            "error": "#ffb4ab",
+            "surface-variant": "#313540",
+            "surface-container-highest": "#313540"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "spacing": {
+            "unit": "4px",
+            "margin-mobile": "20px",
+            "margin-desktop": "64px",
+            "container-max": "1280px",
+            "stack-md": "24px",
+            "gutter": "32px",
+            "stack-lg": "48px",
+            "stack-sm": "12px"
+          },
+          "fontFamily": {
+            "display-lg": ["Inter"],
+            "body-md": ["Inter"],
+            "headline-xl": ["Inter"],
+            "headline-lg": ["Inter"],
+            "body-lg": ["Inter"],
+            "label-caps": ["JetBrains Mono"],
+            "headline-md": ["Inter"],
+            "display-lg-mobile": ["Inter"]
+          },
+          "fontSize": {
+            "display-lg": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+            "body-md": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+            "headline-xl": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+            "headline-lg": ["32px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+            "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0.01em", "fontWeight": "400"}],
+            "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "500"}],
+            "headline-md": ["24px", {"lineHeight": "1.4", "fontWeight": "600"}],
+            "display-lg-mobile": ["40px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "800"}]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      background-color: #0f131d;
+      color: #dfe2f1;
+      overflow-x: hidden;
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .glass-button {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .glass-button:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: #b4c5ff;
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px rgba(180, 197, 255, 0.3);
+    }
+
+    .section-bg {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+    .parallax-zoom {
+      transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .pricing-section { background: radial-gradient(circle at 15% 20%, rgba(59,130,246,.16), transparent 28%), radial-gradient(circle at 85% 75%, rgba(124,58,237,.18), transparent 32%), #0b0f19; }
+    .pricing-orb { position: absolute; border-radius: 9999px; filter: blur(2px); opacity: .5; pointer-events: none; animation: pricing-float 8s ease-in-out infinite; }
+    .pricing-orb-one { width: 15rem; height: 15rem; background: #2563eb; top: 8%; left: -6rem; }
+    .pricing-orb-two { width: 12rem; height: 12rem; background: #7c3aed; right: -3rem; bottom: 18%; animation-delay: -3s; }
+    .pricing-card { background: linear-gradient(145deg, rgba(31,41,55,.82), rgba(15,19,29,.72)); border: 1px solid rgba(180,197,255,.16); box-shadow: 0 20px 70px rgba(0,0,0,.25); transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease; }
+    .pricing-card:hover { transform: translateY(-10px); border-color: rgba(76,215,246,.65); box-shadow: 0 28px 85px rgba(37,99,235,.2); }
+    .pricing-card-featured { border-color: rgba(76,215,246,.7); box-shadow: 0 0 0 1px rgba(124,58,237,.35), 0 28px 90px rgba(59,130,246,.24); }
+    .pricing-card-featured::before { content: ''; position: absolute; inset: -1px; z-index: -1; border-radius: 1.55rem; background: linear-gradient(130deg, #3b82f6, #7c3aed, #06b6d4); filter: blur(14px); opacity: .35; }
+    .pricing-gradient { background: linear-gradient(100deg, #3b82f6, #7c3aed, #06b6d4); background-size: 200% 200%; animation: gradient-shift 5s ease infinite; }
+    .price-check { color: #67e8f9; font-variation-settings: 'FILL' 1; }
+    .faq-item { background: rgba(255,255,255,.035); border: 1px solid rgba(255,255,255,.09); }
+    @keyframes pricing-float { 50% { transform: translateY(-24px) translateX(12px); } }
+    @keyframes gradient-shift { 50% { background-position: 100% 50%; } }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f131d;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #313540;
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #b4c5ff;
+    }
+  </style>
+</head>
+<body class="font-body-md selection:bg-primary selection:text-on-primary">
+<!-- Top Navigation -->
+<nav class="fixed top-0 w-full z-50 bg-white/5 backdrop-blur-[40px] border-b border-white/10 h-20 flex justify-between items-center max-w-container-max mx-auto px-margin-desktop shadow-sm">
+<div class="flex items-center gap-2">
+<img alt="GrowthForge logo" class="h-14 w-14 rounded-xl object-contain" src="./GrowthForge.jpeg"/>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">GrowthForge</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#services">Services</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#portfolio">Portfolio</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#marketing">Process</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#pricing">Pricing</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-300" href="#contact">FAQ</a>
+</div>
+<a href="schedule-consultation.html" class="px-6 py-2 rounded-full bg-primary text-on-primary font-bold hover:scale-105 active:scale-95 transition-transform">
+      Book Consultation
+    </a>
+</nav>
+<!-- Hero Section -->
+<section class="relative h-screen flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-black/60 z-10"></div>
+<img class="w-full h-full object-cover parallax-zoom scale-110" id="hero-img" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxwA59B8d9D0rmSNoAEfxGcgnaiinN4NLfWhodAPIjoRyULieUUhomD7oQSvXKT0YemZrFLNExEmwJykNRZb92AdmxCN_N_o_yB-PoQ8FlJlvfcd3xCvdx1axCQSbxNE5JC2_7iwPAmuUayg389xEKGmFWJekyOtnEpMIbxbStgMZxAzYCdOs4vZ8DI0gLtHx1BHT5vng6CVpV-emAOk3Xidp9w6U0HFydYttYfjv0Xwp0_lpmayxT"/>
+</div>
+<div class="relative z-20 text-center max-w-4xl px-margin-mobile">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-6 leading-tight reveal">
+        We Build Businesses,<br/><span class="text-primary">Not Just Websites</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-2xl mx-auto reveal" style="transition-delay: 0.2s">
+        Websites, AI Automation &amp; Digital Marketing that generate real business growth for the world's most ambitious entrepreneurs.
+      </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center reveal" style="transition-delay: 0.4s">
+<a href="#contact" class="px-10 py-4 rounded-full bg-primary text-on-primary font-bold text-lg shadow-[0_0_30px_rgba(180,197,255,0.4)] hover:shadow-[0_0_50px_rgba(180,197,255,0.6)] transition-all">
+          Start Your Project
+        </a>
+<a href="#pricing" class="px-10 py-4 rounded-full glass-button text-on-surface font-bold text-lg">
+          View Pricing
+        </a>
+</div>
+</div>
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+<span class="material-symbols-outlined text-on-surface-variant opacity-50">keyboard_double_arrow_down</span>
+</div>
+</section>
+<!-- Services Section -->
+<section class="relative min-h-screen py-32 flex items-center" id="services">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-black/75 z-10"></div>
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGJZpnt9UcR-5NoraqSnQcpDoF0ptEmP81Qwb1tu7lT4n56fLA3LjBbMcQu9eNC5bilXoarACbESceREKSTH243UDRasC70jaSjeb33Q8idcK440R7tJvi4LpnbOVi6Djhd_Mt8odDln1B1h6jGR6Jsz8OgRbeuoEch-G2IWX_AskfWDFCPRjXFkw-u3Z2lYWuuaIXk4gNaYvwW6W2rNcOi30NgMZNAADsOumvIfO9vnoMP6b8jT8z"/>
+</div>
+<div class="relative z-20 max-w-container-max mx-auto px-margin-desktop w-full">
+<div class="mb-16">
+<span class="font-label-caps text-label-caps text-primary tracking-widest uppercase">Expertise</span>
+<h2 class="font-headline-xl text-headline-xl mt-4">Precision Services</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Card 1 -->
+<div class="glass-card p-8 rounded-2xl reveal">
+<span class="material-symbols-outlined text-primary text-4xl mb-6">devices</span>
+<h3 class="font-headline-md text-headline-md mb-4">Web Development</h3>
+<p class="text-on-surface-variant mb-6">Bespoke digital architecture including high-converting Business sites, E-Commerce, and Custom Apps.</p>
+<ul class="space-y-2 text-sm text-on-surface-variant/80">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">check_circle</span> React/Next.js Architecture</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">check_circle</span> High-Performance Hosting</li>
+</ul>
+</div>
+<!-- Card 2 -->
+<div class="glass-card p-8 rounded-2xl reveal" style="transition-delay: 0.1s">
+<span class="material-symbols-outlined text-tertiary text-4xl mb-6">smart_toy</span>
+<h3 class="font-headline-md text-headline-md mb-4">AI Chatbots</h3>
+<p class="text-on-surface-variant mb-6">Intelligent automation that qualifies leads and handles support 24/7 with human-like precision.</p>
+<ul class="space-y-2 text-sm text-on-surface-variant/80">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">check_circle</span> LLM Integration</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">check_circle</span> Lead Gen Flow</li>
+</ul>
+</div>
+<!-- Card 3 -->
+<div class="glass-card p-8 rounded-2xl reveal" style="transition-delay: 0.2s">
+<span class="material-symbols-outlined text-secondary text-4xl mb-6">search_insights</span>
+<h3 class="font-headline-md text-headline-md mb-4">Elite SEO</h3>
+<p class="text-on-surface-variant mb-6">Dominating search results through technical excellence and data-driven content strategy.</p>
+<ul class="space-y-2 text-sm text-on-surface-variant/80">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">check_circle</span> Authority Building</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">check_circle</span> Keyword Supremacy</li>
+</ul>
+</div>
+<!-- Card 4 -->
+<div class="glass-card p-8 rounded-2xl reveal" style="transition-delay: 0.3s">
+<span class="material-symbols-outlined text-primary-fixed-dim text-4xl mb-6">brush</span>
+<h3 class="font-headline-md text-headline-md mb-4">Strategic Branding</h3>
+<p class="text-on-surface-variant mb-6">Visual identities that command authority and foster immediate trust with your target audience.</p>
+<ul class="space-y-2 text-sm text-on-surface-variant/80">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">check_circle</span> Visual Language</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-xs">check_circle</span> Tone of Voice</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Portfolio Section -->
+<section class="relative min-h-screen py-32 overflow-hidden" id="portfolio">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-black/80 z-10"></div>
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4fCezUQuZm11HL_xtQrijrdGh_pKdUqbux4EVOHin_4kUlfO8m0Roz1bqDM1VaKGt-QCF3-7O7QbFSed2mBpax0wFI8gFYkHL5DBV1WFUi7UwxETFYNDdhWY3kmOqjVLsTyQifZiUIrZ7d_Vmhgfr90qBzv7FRKUKQU3hfJA4ByIYCknq_CDkBp2M5EfwcmrZRo6_a_L93qljQ3P-Irz2zJ9WgwhSVrC2F8VyYa8kZTxu1FxFGzIU"/>
+</div>
+<div class="relative z-20 max-w-container-max mx-auto px-margin-desktop">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+<div>
+<span class="font-label-caps text-label-caps text-secondary tracking-widest uppercase">Showcase</span>
+<h2 class="font-headline-xl text-headline-xl mt-4">Selected Works</h2>
+</div>
+<div class="flex gap-4">
+<button class="w-12 h-12 rounded-full glass-button flex items-center justify-center">
+<span class="material-symbols-outlined">west</span>
+</button>
+<button class="w-12 h-12 rounded-full glass-button flex items-center justify-center">
+<span class="material-symbols-outlined">east</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Project 1 -->
+<div class="group relative overflow-hidden rounded-3xl reveal aspect-[4/5]">
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10"></div>
+<img class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A futuristic medical dashboard interface with clean white lines, vibrant blue health metrics, and high-performance aesthetics on a curved glass screen in a dark clinical setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4hs0NOmz6sXqH5qUZ63b-nAY1jhhtwk7_HJTFyBNvS1SPPa3OSqaM0WJq-ax99cVaZ4MLV1WQi2nFSZ3fd-FY7isgItq2iDt3sPs9r0KgdQxACCcIEtPbOI5KEOxg9wUc1Likk5RQJU4SJx1131yhPMejIcbD8BwdW2o6sZmho_QiF8x8xwQWCdum66kACQBGXdjEj1uValKlxaABrGX0cazpGThpceX4sMpzDguHS4_ydCNTodjC"/>
+<div class="absolute bottom-0 left-0 p-8 z-20">
+<span class="font-label-caps text-[10px] text-tertiary px-3 py-1 rounded-full border border-tertiary/30 bg-tertiary/10 mb-4 inline-block">Healthcare</span>
+<h3 class="font-headline-md text-white mb-2">MedTech OS</h3>
+<p class="text-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity duration-300">Revolutionizing patient data visualization with AI.</p>
+</div>
+</div>
+<!-- Project 2 -->
+<div class="group relative overflow-hidden rounded-3xl reveal aspect-[4/5]" style="transition-delay: 0.2s">
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10"></div>
+<img class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A luxury restaurant interior with dark marble tables, gold accent lighting, and a high-end web layout displayed on a sleek tablet in the foreground, exuding an elite dining atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDWErOGXfv0QeuAebuCiL3kDu_pr_TH1UadynU3D_8i2InivGQvqi5jkLvNCzmtlf5h3GpnK6hsWi7aL-EHu-fUdB4r4JOQiQ62yOBlJe20L9R0p3O8EUV9P76GncUCkBC8-0MH6wufXnDN0d8l_dvFzny0DKOEcfJWV90P9MiCs4Ex-TzitlGGjy4fsZTxncS4Ip_ASHZtqNEVA4Yiv4ZRQ68h9lynd8CCmLvRL4PQOZe_UyjnKJ8f"/>
+<div class="absolute bottom-0 left-0 p-8 z-20">
+<span class="font-label-caps text-[10px] text-secondary px-3 py-1 rounded-full border border-secondary/30 bg-secondary/10 mb-4 inline-block">Luxury</span>
+<h3 class="font-headline-md text-white mb-2">Aurora Dining</h3>
+<p class="text-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity duration-300">Exquisite digital presence for Michelin-star culinary arts.</p>
+</div>
+</div>
+<!-- Project 3 -->
+<div class="group relative overflow-hidden rounded-3xl reveal aspect-[4/5]" style="transition-delay: 0.4s">
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10"></div>
+<img class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="A modern architectural real estate website shown on a high-resolution laptop screen sitting on a designer wooden desk, with soft morning light illuminating the high-contrast professional design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvZpa34K0kqYGMgFLvDrq5sNJKmo25v4l5K9nZGKiG5SGGdrkgE_N2N50OKliVjd3_K8dmXDLC3Qgc3r-u6VdCdOISl1k_d7flh4YvXWSyncjT8VQzdyQX8YJgTEuL4d3z7v_unObd_IEdcEVur5GwGqII8MTb3T3rHLWki3gaN7U8BU5PcJruFU-VY1McjBfcoFa9Dr_exl0QKSUnBzhEUqG63Dq7zJLhgRXf0Khg-ipf7qNHBSOy"/>
+<div class="absolute bottom-0 left-0 p-8 z-20">
+<span class="font-label-caps text-[10px] text-primary px-3 py-1 rounded-full border border-primary/30 bg-primary/10 mb-4 inline-block">PropTech</span>
+<h3 class="font-headline-md text-white mb-2">Skyline Portal</h3>
+<p class="text-sm text-on-surface-variant opacity-0 group-hover:opacity-100 transition-opacity duration-300">Seamless real estate acquisition platform for premium listings.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Digital Marketing Section -->
+<section class="relative min-h-screen py-32 flex items-center" id="marketing">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-black/85 z-10"></div>
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCciwdatpqn5lLBtVk5jrFHzHBTzSyDpfXjKzdPMIALma2ZT6-Q8HaFl2jIeHFqh2ftCZUFz0DIYrtfYPW9Pn-YCJEXzqygFGb91hZVrXgDsnm8zaLyaLdIRoc2sHijd6T87lcZdtaL2Z7ko6U8ugXY_slIn3Csv1CrNHR5mpCr1ozSNSf5DMYsJwTWlDqVUnR5ycF1z7bD73uSbzf6FYU1Rr34leapqi76908ovqya2OayrLZj6JJs"/>
+</div>
+<div class="relative z-20 max-w-container-max mx-auto px-margin-desktop">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="reveal">
+<span class="font-label-caps text-label-caps text-primary tracking-widest uppercase">Performance</span>
+<h2 class="font-headline-xl text-headline-xl mt-4 mb-8">Digital Domination</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-12">We don't just run ads; we engineer profitable customer acquisition systems. Our multi-channel approach ensures your brand stays ahead of the competition where it matters most.</p>
+<div class="space-y-6">
+<div class="flex items-start gap-4 glass-card p-6 rounded-xl">
+<span class="material-symbols-outlined text-primary p-3 bg-primary/10 rounded-lg">trending_up</span>
+<div>
+<h4 class="font-headline-md text-lg mb-2">Google Ads Mastery</h4>
+<p class="text-on-surface-variant text-sm">Targeted high-intent search traffic with optimized ROI and conversion tracking.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 glass-card p-6 rounded-xl">
+<span class="material-symbols-outlined text-secondary p-3 bg-secondary/10 rounded-lg">hub</span>
+<div>
+<h4 class="font-headline-md text-lg mb-2">Social Scaling</h4>
+<p class="text-on-surface-variant text-sm">Captivating Meta and LinkedIn campaigns designed to build community and sales.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="relative reveal" style="transition-delay: 0.3s">
+<div class="glass-card p-1 rounded-3xl overflow-hidden shadow-2xl">
+<img class="w-full rounded-[20px]" data-alt="A sleek dark-mode analytic interface displaying a 300% growth curve in bright blue light, with floating data points and a premium aesthetic reflecting massive business scaling." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXGVF0bO5ND0uG629gN_ONOiKnIKcLv6XRuJEGODwe-vnTSvCK2QJpLnp6KVO4Oo1vgzAfeEpyQQAFTxRWVztDmRYYgBRYT8LK19ns3WFOHDOr-zjKakhus1qDNOHBTvgXOwt5kJqnQD4vKq_eSnz8clZMSt5Ova83Hq9AWjcbjKcnYiTl8jRB0EAkEGmEh9ZK_Mrk3Fm2zBy1yyFv3QcBJk8JFfmfc6nk5j9Ee98-4RAQVnBZgeKu"/>
+</div>
+<div class="absolute -bottom-6 -right-6 glass-card p-6 rounded-2xl animate-pulse">
+<p class="text-primary font-bold text-3xl">342%</p>
+<p class="text-[10px] uppercase tracking-widest opacity-60">Avg. Revenue Growth</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- AI Automation Section -->
+<section class="relative min-h-screen py-32 flex items-center" id="automation">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-black/80 z-10"></div>
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDV5FOKpP-EbpdHvwYqG2QFjmqhoNRGK7mPjpYwDQhpp-IEMNZVF8hgYpSVglYT1Tt6TXkGOdv70mCkB_ZOeCxGL7iUaCaImwOBcQ8ocsnm7slKDEm7nySwAdBLP7FGzjH6fH1xUaHuuGXsLtjwgt9AjbMMANG_wqF4eJ3L_CBiohucxD6V60oh38E7e6t3C5CPmAF-4r9EoRpJ--HpnbWZZwbzmCqbHanMhi1LK27YDgOTl_oz5Whk"/>
+</div>
+<div class="relative z-20 max-w-container-max mx-auto px-margin-desktop text-center">
+<div class="max-w-3xl mx-auto mb-20 reveal">
+<span class="font-label-caps text-label-caps text-tertiary tracking-widest uppercase">The Future</span>
+<h2 class="font-headline-xl text-headline-xl mt-4 mb-6">Intelligent Systems</h2>
+<p class="text-on-surface-variant font-body-lg">Replace repetitive tasks with high-performance AI logic. We integrate custom automation into your existing workflow for maximum efficiency.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="glass-card p-10 rounded-3xl reveal hover:border-tertiary/50 transition-colors">
+<div class="w-16 h-16 bg-tertiary/10 rounded-2xl flex items-center justify-center mx-auto mb-8">
+<span class="material-symbols-outlined text-tertiary text-4xl">account_tree</span>
+</div>
+<h3 class="font-headline-md text-white mb-4">Chatbot Logic</h3>
+<p class="text-on-surface-variant text-sm">Advanced decision trees that guide users to the right solution without human intervention.</p>
+</div>
+<div class="glass-card p-10 rounded-3xl reveal hover:border-tertiary/50 transition-colors" style="transition-delay: 0.2s">
+<div class="w-16 h-16 bg-tertiary/10 rounded-2xl flex items-center justify-center mx-auto mb-8">
+<span class="material-symbols-outlined text-tertiary text-4xl">sync_alt</span>
+</div>
+<h3 class="font-headline-md text-white mb-4">CRM Integration</h3>
+<p class="text-on-surface-variant text-sm">Seamless data syncing between your website and sales platforms like HubSpot and Salesforce.</p>
+</div>
+<div class="glass-card p-10 rounded-3xl reveal hover:border-tertiary/50 transition-colors" style="transition-delay: 0.4s">
+<div class="w-16 h-16 bg-tertiary/10 rounded-2xl flex items-center justify-center mx-auto mb-8">
+<span class="material-symbols-outlined text-tertiary text-4xl">chat</span>
+</div>
+<h3 class="font-headline-md text-white mb-4">WhatsApp Automation</h3>
+<p class="text-on-surface-variant text-sm">Reach customers where they are with automated, personalized WhatsApp messaging sequences.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Pricing Section -->
+<section class="pricing-section relative overflow-hidden py-28" id="pricing">
+<div class="pricing-orb pricing-orb-one"></div><div class="pricing-orb pricing-orb-two"></div>
+<div class="relative z-10 max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop">
+<div class="max-w-3xl mx-auto text-center mb-20 reveal">
+<span class="font-label-caps text-label-caps text-tertiary tracking-[.2em] uppercase">GrowthForge Plans</span>
+<h2 class="font-headline-xl text-4xl md:text-headline-xl mt-5 mb-6">Simple Pricing. <span class="text-primary">Powerful Growth.</span></h2>
+<p class="text-on-surface-variant font-body-lg">Choose the perfect plan for your business. Every package includes professional support, transparent pricing, and a long-term partnership with GrowthForge.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-7 items-start max-w-7xl mx-auto">
+  <article class="pricing-card rounded-3xl p-8 reveal">
+    <p class="font-label-caps text-xs tracking-[.16em] text-tertiary uppercase">Build your foundation</p>
+    <h3 class="text-3xl font-bold text-white mt-4">Starter Launch</h3>
+    <p class="text-on-surface-variant text-sm mt-4 min-h-16">Perfect for startups, students, freelancers, and small businesses taking their first step online.</p>
+    <div class="my-7"><span class="text-5xl font-extrabold text-white">₹10,000</span><p class="mt-2 inline-flex items-center rounded-full bg-white/8 px-3 py-1 text-xs text-tertiary">Renewal: ₹2,500/year</p></div>
+    <a href="#contact" class="pricing-gradient block rounded-xl px-5 py-4 text-center font-bold text-white shadow-lg">Launch My Website</a>
+    <div class="mt-8 border-t border-white/10 pt-6"><p class="text-xs uppercase tracking-widest text-on-surface-variant mb-4">Everything you need</p><ul class="space-y-3 text-sm text-on-surface-variant">
+      <li><span class="material-symbols-outlined price-check align-middle text-base">check_circle</span> Premium responsive website</li><li><span class="material-symbols-outlined price-check align-middle text-base">check_circle</span> Domain setup, hosting &amp; SSL</li><li><span class="material-symbols-outlined price-check align-middle text-base">check_circle</span> Maintenance &amp; basic security</li><li><span class="material-symbols-outlined price-check align-middle text-base">check_circle</span> Basic SEO &amp; fast loading</li><li><span class="material-symbols-outlined price-check align-middle text-base">check_circle</span> WhatsApp &amp; contact form</li><li><span class="material-symbols-outlined price-check align-middle text-base">check_circle</span> Mobile optimized + 30 days support</li>
+    </ul></div>
+    <p class="mt-7 text-xs text-on-surface-variant"><span class="text-tertiary font-semibold">Yearly renewal includes:</span> hosting, SSL, maintenance, security updates, minor changes and support.</p>
+  </article>
+  <article class="pricing-card pricing-card-featured relative rounded-3xl p-8 lg:-mt-5 lg:pb-10 reveal" style="transition-delay:.12s">
+    <div class="pricing-gradient absolute -top-4 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-5 py-2 text-xs font-bold text-white shadow-lg">★ MOST POPULAR</div>
+    <p class="font-label-caps text-xs tracking-[.16em] text-tertiary uppercase">Accelerate growth</p>
+    <h3 class="text-3xl font-bold text-white mt-4">Growth Pro</h3>
+    <p class="text-on-surface-variant text-sm mt-4 min-h-16">For businesses ready to generate more customers and accelerate their online growth.</p>
+    <div class="my-7"><span class="text-5xl font-extrabold text-white">₹15,000</span><p class="mt-2 inline-flex items-center rounded-full bg-tertiary/10 px-3 py-1 text-xs text-tertiary">Renewal: ₹3,500/year</p></div>
+    <a href="#contact" class="pricing-gradient block rounded-xl px-5 py-4 text-center font-bold text-white shadow-lg">Grow My Business</a>
+    <div class="mt-8 border-t border-white/10 pt-6"><p class="text-xs uppercase tracking-widest text-on-surface-variant mb-4">Everything in Starter, plus</p><ul class="space-y-3 text-sm text-on-surface-variant">
+      <li><span class="material-symbols-outlined price-check align-middle text-base">check_circle</span> Digital marketing setup</li><li><span class="material-symbols-outlined price-check align-middle text-base">check_circle</span> Google Business &amp; social optimization</li><li><span class="material-symbols-outlined price-check align-middle text-base">check_circle</span> SEO &amp; speed optimization</li><li><span class="material-symbols-outlined price-check align-middle text-base">check_circle</span> Branding consultation</li><li><span class="material-symbols-outlined price-check align-middle text-base">check_circle</span> Monthly performance report</li><li><span class="material-symbols-outlined price-check align-middle text-base">check_circle</span> Strategy session, CRO &amp; priority support</li>
+    </ul></div>
+    <p class="mt-7 text-xs text-on-surface-variant"><span class="text-tertiary font-semibold">Yearly renewal includes:</span> hosting, updates, security monitoring, marketing support, monthly reports and priority support.</p>
+  </article>
+  <article class="pricing-card rounded-3xl p-8 reveal" style="transition-delay:.24s">
+    <div class="inline-flex rounded-full border border-secondary/50 bg-secondary/10 px-3 py-1 text-xs font-bold text-secondary">🔥 BEST VALUE</div>
+    <p class="font-label-caps text-xs tracking-[.16em] text-tertiary uppercase mt-4">Your dedicated growth partner</p>
+    <h3 class="text-3xl font-bold text-white mt-4">Growth Elite</h3>
+    <p class="text-on-surface-variant text-sm mt-4 min-h-16">Continuous digital growth, expert guidance, and long-term success for ambitious businesses.</p>
+    <div class="my-7"><span class="text-5xl font-extrabold text-white">₹20,000</span><p class="mt-2 inline-flex items-center rounded-full bg-white/8 px-3 py-1 text-xs text-tertiary">Renewal: ₹4,000/year</p></div>
+    <a href="#contact" class="pricing-gradient block rounded-xl px-5 py-4 text-center font-bold text-white shadow-lg">Scale My Business</a>
+    <div class="mt-8 border-t border-white/10 pt-6"><p class="text-xs uppercase tracking-widest text-on-surface-variant mb-4">Everything in Growth Pro, plus</p><ul class="space-y-3 text-sm text-on-surface-variant">
+      <li><span class="material-symbols-outlined price-check align-middle text-base">check_circle</span> Dedicated growth manager</li><li><span class="material-symbols-outlined price-check align-middle text-base">check_circle</span> Quarterly strategy sessions</li><li><span class="material-symbols-outlined price-check align-middle text-base">check_circle</span> AI automation consultation</li><li><span class="material-symbols-outlined price-check align-middle text-base">check_circle</span> Lead-generation blueprint</li><li><span class="material-symbols-outlined price-check align-middle text-base">check_circle</span> Advanced analytics &amp; CRO</li><li><span class="material-symbols-outlined price-check align-middle text-base">check_circle</span> Proactive security &amp; monthly consultation</li><li><span class="material-symbols-outlined price-check align-middle text-base">check_circle</span> Scaling roadmap &amp; continuous optimization</li>
+    </ul></div>
+    <p class="mt-7 text-xs text-on-surface-variant"><span class="text-tertiary font-semibold">Most comprehensive plan.</span> Premium hosting, backups, growth reviews and strategy consultation included at renewal.</p>
+  </article>
+</div>
+<div class="glass-card max-w-6xl mx-auto mt-12 rounded-2xl p-6 reveal"><p class="text-center text-sm font-semibold text-white mb-5">Every GrowthForge plan includes</p><div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-on-surface-variant"><span>✓ Mobile responsive design</span><span>✓ Secure hosting</span><span>✓ Free SSL certificate</span><span>✓ Fast loading</span><span>✓ WhatsApp integration</span><span>✓ Contact forms</span><span>✓ Technical support</span><span>✓ Future upgrade available</span></div></div>
+<div class="max-w-5xl mx-auto mt-24 reveal"><h3 class="text-3xl font-bold text-center text-white mb-10">Frequently Asked Questions</h3><div class="grid md:grid-cols-2 gap-4"><div class="faq-item rounded-2xl p-5"><h4 class="font-bold text-white">Can I upgrade my plan later?</h4><p class="text-sm text-on-surface-variant mt-2">Yes. Upgrade anytime by paying only the price difference.</p></div><div class="faq-item rounded-2xl p-5"><h4 class="font-bold text-white">Do I own my website?</h4><p class="text-sm text-on-surface-variant mt-2">Absolutely. Once completed, your website belongs entirely to you.</p></div><div class="faq-item rounded-2xl p-5"><h4 class="font-bold text-white">Is hosting included?</h4><p class="text-sm text-on-surface-variant mt-2">Yes. Every plan includes premium hosting.</p></div><div class="faq-item rounded-2xl p-5"><h4 class="font-bold text-white">Are there hidden charges?</h4><p class="text-sm text-on-surface-variant mt-2">No. All pricing is completely transparent.</p></div><div class="faq-item rounded-2xl p-5"><h4 class="font-bold text-white">Can you redesign my existing website?</h4><p class="text-sm text-on-surface-variant mt-2">Yes. We can redesign and modernize existing websites.</p></div><div class="faq-item rounded-2xl p-5"><h4 class="font-bold text-white">How long does development take?</h4><p class="text-sm text-on-surface-variant mt-2">Typically 5–10 business days, depending on project complexity.</p></div></div></div>
+<div class="pricing-gradient max-w-5xl mx-auto mt-16 rounded-3xl p-[1px] reveal"><div class="rounded-[23px] bg-[#101625]/95 px-7 py-12 text-center"><h3 class="text-3xl font-bold text-white">Ready to Grow Your Business?</h3><p class="max-w-2xl mx-auto mt-4 text-on-surface-variant">Join GrowthForge and let us build, market, and scale your business with modern technology and AI-powered solutions.</p><div class="flex flex-col sm:flex-row justify-center gap-4 mt-8"><a href="#contact" class="pricing-gradient rounded-xl px-7 py-3 font-bold text-white">Get Started Today</a><a href="https://mail.google.com/mail/?view=cm&fs=1&to=workgrowthforge@gmail.com" target="_blank" rel="noopener noreferrer" class="rounded-xl border border-white/20 px-7 py-3 font-bold text-white hover:bg-white/10">Talk to an Expert</a></div></div></div>
+</div>
+</section>
+<!-- Testimonials Section -->
+<section class="relative min-h-screen py-32 flex items-center">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-black/75 z-10"></div>
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdGgTSruh-2yENbszhxzqNKiqwdYhyM3UB4gMC4hkA4hmaxLh_YVfF5Cseea2HP_qTGMGOU1J1nNbhepd50XBCD7s8arYVDnXCn6hE5hsAFeMxPkoRN0vegtFgYzxKxo8mxGlKvq_lE0xLrZXdUptJDhFss_4stdxlkOkeWbc_j1NpzdWW9_xG3_tZO2fw0tgZL8eThvMI7XI-FZ-F5WcXPzttv2vNIfnOSFvqMYA3hS4lyIEzwx3D"/>
+</div>
+<div class="relative z-20 max-w-container-max mx-auto px-margin-desktop">
+<div class="mb-16 reveal">
+<span class="font-label-caps text-label-caps text-primary tracking-widest uppercase">Success Stories</span>
+<h2 class="font-headline-xl text-headline-xl mt-4">Trusted by Leaders</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="glass-card p-12 rounded-[40px] reveal">
+<span class="material-symbols-outlined text-primary text-5xl mb-8" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+<p class="font-headline-md text-white leading-relaxed mb-10 italic">"GrowthForge transformed our digital footprint. We saw a 200% increase in lead generation within the first three months of launching our new AI-integrated platform."</p>
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-full bg-surface-container-high border border-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<p class="font-bold text-white">David Chen</p>
+<p class="text-xs text-on-surface-variant tracking-widest uppercase">CEO, TechFrontier Solutions</p>
+</div>
+</div>
+</div>
+<div class="glass-card p-12 rounded-[40px] reveal" style="transition-delay: 0.2s">
+<span class="material-symbols-outlined text-primary text-5xl mb-8" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+<p class="font-headline-md text-white leading-relaxed mb-10 italic">"The level of strategic insight they brought to our branding and SEO was unparalleled. They didn't just build a site; they built an authority machine."</p>
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-full bg-surface-container-high border border-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<p class="font-bold text-white">Elena Rodriguez</p>
+<p class="text-xs text-on-surface-variant tracking-widest uppercase">Founder, Luxe Real Estate</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="relative min-h-screen py-32 flex items-center" id="contact">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-black/85 z-10"></div>
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbb5M7Yd0qdGE6drryLONj2KKg7nsqDIaeGuFzxJpy75UzKdDdEWOkluzoVrcrS_FYI7sxZ11AZfGTAshOjg2yK89Sexe3BAU_6Vv42vkzkr0RmzdgruhAZu2CKg58Mx4cfJ9zA7GXMhaNA_Em_XQ7bvY0aClK1_B9HrVeKYDhDiWtgvUvWG1rocC5Nljl0KyqDdsQ6GjxCxVrLd3rcPPJYNpfrPMpGSBkP9zkRyFJIGE6O57MLqVk"/>
+</div>
+<div class="relative z-20 max-w-container-max mx-auto px-margin-desktop w-full">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="reveal">
+<h2 class="font-display-lg text-display-lg-mobile md:text-5xl mb-8">Ready to Scale Your<br/><span class="text-primary">Digital Empire?</span></h2>
+<p class="text-on-surface-variant font-body-lg mb-12">Contact our elite engineering team today for a confidential consultation about your business goals.</p>
+<div class="space-y-4">
+<a href="https://mail.google.com/mail/?view=cm&fs=1&to=workgrowthforge@gmail.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-primary">mail</span>
+<span>workgrowthforge@gmail.com</span>
+</a>
+<a href="https://wa.me/919401993998" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-primary">call</span>
+<span>+91 9401993998</span>
+</a>
+</div>
+</div>
+<div class="glass-card p-10 rounded-[40px] reveal" style="transition-delay: 0.2s">
+<form class="space-y-6" id="contact-form">
+<div class="space-y-2">
+<label class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest ml-1">Full Name</label>
+<input class="w-full bg-white/5 border-0 border-b border-white/20 focus:border-primary focus:ring-0 text-white p-4 transition-all" name="full_name" placeholder="John Wick" required="" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest ml-1">Work Email</label>
+<input class="w-full bg-white/5 border-0 border-b border-white/20 focus:border-primary focus:ring-0 text-white p-4 transition-all" name="email" placeholder="john@continental.com" required="" type="email"/>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-widest ml-1">Project Message</label>
+<textarea class="w-full bg-white/5 border-0 border-b border-white/20 focus:border-primary focus:ring-0 text-white p-4 transition-all" name="project_message" placeholder="Tell us about your growth goals..." required="" rows="4"></textarea>
+</div>
+<button class="w-full py-4 bg-primary text-on-primary font-bold rounded-xl mt-4 hover:shadow-[0_0_30px_rgba(180,197,255,0.4)] transition-all disabled:cursor-not-allowed disabled:opacity-60" type="submit">
+              Submit Brief
+            </button>
+<p aria-live="polite" class="min-h-5 text-center text-sm text-on-surface-variant" id="contact-form-status"></p>
+</form>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface py-20 border-t border-white/5">
+<div class="max-w-container-max mx-auto px-margin-desktop">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-20">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-2 mb-6">
+<img alt="GrowthForge logo" class="h-14 w-14 rounded-xl object-contain" loading="lazy" src="./GrowthForge.jpeg"/>
+<span class="font-headline-md text-headline-md font-bold text-on-surface">GrowthForge</span>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6">Elite digital engineering for global enterprises and ambitious startups.</p>
+</div>
+<div>
+<h4 class="font-label-caps text-xs text-white mb-6 uppercase tracking-widest">Solutions</h4>
+<ul class="space-y-3 text-on-surface-variant text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Web Development</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">AI Automation</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Digital Strategy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Brand Identity</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-xs text-white mb-6 uppercase tracking-widest">Company</h4>
+<ul class="space-y-3 text-on-surface-variant text-sm">
+<li><a class="hover:text-primary transition-colors" href="about.html">About Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Portfolio</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Blog</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-label-caps text-xs text-white mb-6 uppercase tracking-widest">Contact</h4>
+<ul class="space-y-3 text-on-surface-variant text-sm">
+<li><a href="https://mail.google.com/mail/?view=cm&fs=1&to=workgrowthforge@gmail.com" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-primary transition-colors"><span class="material-symbols-outlined text-xs">mail</span> workgrowthforge@gmail.com</a></li>
+<li><a href="https://wa.me/919401993998" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-primary transition-colors"><span class="material-symbols-outlined text-xs">call</span> +91 9401993998</a></li>
+<li class="flex gap-4 mt-6">
+<a class="w-8 h-8 rounded-full glass-button flex items-center justify-center" href="#"><span class="material-symbols-outlined text-sm">share</span></a>
+<a class="w-8 h-8 rounded-full glass-button flex items-center justify-center" href="#"><span class="material-symbols-outlined text-sm">public</span></a>
+</li>
+</ul>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5">
+<p class="text-xs text-on-surface-variant mb-4 md:mb-0">© 2026 GrowthForge. Elite Performance Engineering.</p>
+<div class="flex gap-8 text-xs text-on-surface-variant/60">
+<a class="hover:text-primary" href="#">Privacy Policy</a>
+<a class="hover:text-primary" href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./app.js?v=20260710"></script>
+<script>
+    // Reveal animations on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px"
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Simple parallax effect for hero
+    window.addEventListener('scroll', () => {
+      const scrollPos = window.pageYOffset;
+      const heroImg = document.getElementById('hero-img');
+      if (heroImg) {
+        heroImg.style.transform = `translateY(${scrollPos * 0.3}px) scale(${1.1 + (scrollPos * 0.0005)})`;
+      }
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Save contact briefs to Supabase.
+    const contactForm = document.getElementById('contact-form');
+    const contactFormStatus = document.getElementById('contact-form-status');
+
+    contactForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const submitButton = contactForm.querySelector('button[type="submit"]');
+      const formData = new FormData(contactForm);
+      submitButton.disabled = true;
+      contactFormStatus.textContent = 'Sending your brief...';
+
+      try {
+        if (!window.supabaseClient) {
+          throw new Error('Supabase is not loaded. Reload the page and try again.');
+        }
+
+        const { error } = await window.supabaseClient
+          .from('contact_submissions')
+          .insert({
+            full_name: formData.get('full_name').trim(),
+            email: formData.get('email').trim(),
+            project_message: formData.get('project_message').trim()
+          });
+
+        if (error) throw error;
+
+        contactForm.reset();
+        contactFormStatus.classList.remove('text-error');
+        contactFormStatus.classList.add('text-tertiary');
+        contactFormStatus.textContent = 'Thanks — your brief has been received.';
+      } catch (error) {
+        console.error('Unable to submit contact brief:', error);
+        contactFormStatus.classList.remove('text-tertiary');
+        contactFormStatus.classList.add('text-error');
+        contactFormStatus.textContent = `We could not send your brief: ${error.message}`;
+      } finally {
+        submitButton.disabled = false;
+      }
+    });
+  </script>
+</body></html>
