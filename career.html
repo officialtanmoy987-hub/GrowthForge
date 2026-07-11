@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Careers at GrowthForge — Build The Future With Us</title>
+<meta name="description" content="Join GrowthForge as an intern, freelancer, or full-time team member. Real client work, real mentorship, real growth." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================
+     GrowthForge Careers — design tokens
+     Direction: "forge" literalism — heat, molten metal, cooling
+     steel — instead of the generic near-black + neon-accent look.
+  ========================================================= */
+  :root{
+    --forge-base:#0b0d12;
+    --forge-base-2:#12151d;
+    --forge-surface: rgba(255,255,255,0.045);
+    --forge-surface-hover: rgba(255,255,255,0.075);
+    --forge-border: rgba(255,255,255,0.09);
+    --forge-border-strong: rgba(255,255,255,0.16);
+    --forge-ember:#ff6b35;
+    --forge-ember-dim:#b8471f;
+    --forge-gold:#ffb84d;
+    --forge-steel:#5b8fb9;
+    --forge-text:#f5f3ee;
+    --forge-muted:#9ba3af;
+    --forge-muted-2:#6b7280;
+    --font-display:'Space Grotesk',Inter,sans-serif;
+    --font-body:'Inter',sans-serif;
+    --font-mono:'JetBrains Mono',monospace;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--forge-base);
+    color:var(--forge-text);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img,svg{display:block;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;}
+  input,select,textarea{font-family:inherit;}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+  .wrap-narrow{max-width:768px;margin:0 auto;padding:0 24px;}
+  .wrap-mid{max-width:900px;margin:0 auto;padding:0 24px;}
+
+  .font-display{font-family:var(--font-display);}
+  .font-mono{font-family:var(--font-mono);}
+
+  .glass{
+    background:var(--forge-surface);
+    border:1px solid var(--forge-border);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    transition:background .25s ease, border-color .25s ease, transform .25s ease;
+  }
+  .glass:hover{background:var(--forge-surface-hover); border-color:var(--forge-border-strong);}
+
+  .ember-text{
+    background:linear-gradient(120deg,var(--forge-ember) 0%, var(--forge-gold) 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    border-radius:999px; padding:14px 28px; font-size:14px; font-weight:600;
+    border:none; transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .btn:focus-visible{outline:2px solid var(--forge-ember); outline-offset:2px;}
+  .btn-ember{
+    background:linear-gradient(120deg,var(--forge-ember) 0%, #ff8a5c 100%);
+    color:#160a04;
+    box-shadow:0 8px 30px -8px rgba(255,107,53,.55);
+  }
+  .btn-ember:hover{transform:scale(1.03); box-shadow:0 10px 40px -6px rgba(255,107,53,.75);}
+  .btn-ghost{color:var(--forge-text);}
+  .btn-ghost:hover{transform:translateY(-1px);}
+
+  svg.icon{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+
+  section{padding:96px 0;}
+  @media (max-width:640px){ section{padding:64px 0;} }
+
+  .section-head{text-align:center; margin-bottom:56px;}
+  .section-head h2{font-family:var(--font-display); font-weight:600; font-size:36px; margin:0;}
+  .section-head p{color:var(--forge-muted); max-width:480px; margin:12px auto 0; font-size:15px;}
+  @media (max-width:640px){ .section-head h2{font-size:28px;} }
+
+  /* ---------- reveal-on-scroll ---------- */
+  .reveal{opacity:0; transform:translateY(20px); transition:opacity .5s ease, transform .5s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    *{animation-duration:.001ms !important; transition-duration:.001ms !important;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative; overflow:hidden; padding:160px 24px 120px; text-align:center;}
+  .hero-glow{position:absolute; inset:0; z-index:-1; pointer-events:none;}
+  .blob{position:absolute; border-radius:50%; filter:blur(0px);}
+  .blob-1{
+    width:560px;height:560px; left:50%; top:-10%; transform:translateX(-50%);
+    background:radial-gradient(circle, rgba(255,107,53,.35) 0%, rgba(255,107,53,.08) 45%, transparent 70%);
+    animation:pulse1 6s ease-in-out infinite;
+  }
+  .blob-2{
+    width:320px;height:320px; left:16%; top:28%;
+    background:radial-gradient(circle, rgba(255,184,77,.25) 0%, transparent 65%);
+    animation:pulse2 8s ease-in-out infinite .5s;
+  }
+  .blob-3{
+    width:280px;height:280px; right:12%; top:18%;
+    background:radial-gradient(circle, rgba(91,143,185,.22) 0%, transparent 65%);
+    animation:pulse3 7s ease-in-out infinite 1s;
+  }
+  @keyframes pulse1{0%,100%{transform:translateX(-50%) scale(1); opacity:.7;} 50%{transform:translateX(-50%) scale(1.08); opacity:.95;}}
+  @keyframes pulse2{0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(20px,0) scale(1.15);}}
+  @keyframes pulse3{0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(0,-15px) scale(1.1);}}
+  .dot-grid{position:absolute; inset:0; opacity:.15;
+    background-image:radial-gradient(rgba(245,243,238,.6) 1px, transparent 1px);
+    background-size:34px 34px;}
+
+  .eyebrow{
+    font-family:var(--font-mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--forge-muted); display:inline-flex; align-items:center; gap:8px;
+    border-radius:999px; padding:8px 16px;
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%; background:var(--forge-ember);}
+  .hero h1{
+    font-family:var(--font-display); font-weight:600; letter-spacing:-.02em; line-height:1.05;
+    font-size:64px; margin:24px 0 0;
+  }
+  .hero p.lede{color:var(--forge-muted); font-size:18px; max-width:560px; margin:24px auto 0;}
+  .hero-actions{display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:40px;}
+  @media (max-width:640px){ .hero h1{font-size:40px;} .hero{padding:130px 20px 90px;} }
+
+  /* ---------- WHY JOIN ---------- */
+  .why-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+  @media (max-width:900px){ .why-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:520px){ .why-grid{grid-template-columns:1fr;} }
+  .why-card{border-radius:16px; padding:24px; transition:transform .3s ease;}
+  .why-card:hover{transform:translateY(-6px);}
+  .why-icon{width:44px;height:44px;border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:20px;}
+  .why-card h3{font-family:var(--font-display); font-size:18px; margin:0 0 8px;}
+  .why-card p{color:var(--forge-muted); font-size:14px; line-height:1.6; margin:0;}
+
+  /* ---------- ROLES ---------- */
+  .tabs{display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin-bottom:32px;}
+  .tab-btn{
+    border-radius:999px; padding:11px 20px; font-size:14px; font-weight:500;
+    color:var(--forge-muted); border:1px solid var(--forge-border); background:var(--forge-surface);
+    transition:all .2s ease;
+  }
+  .tab-btn:hover{color:var(--forge-text);}
+  .tab-btn.active{
+    color:#160a04; border-color:transparent;
+    background:linear-gradient(120deg,var(--forge-ember) 0%, #ff8a5c 100%);
+  }
+  .filters{display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-bottom:40px;}
+  .search-box{
+    display:flex; align-items:center; gap:10px; border-radius:999px; padding:11px 18px;
+    max-width:280px; width:100%;
+  }
+  .search-box input{background:transparent; border:none; color:var(--forge-text); font-size:14px; width:100%; outline:none;}
+  .search-box input::placeholder{color:var(--forge-muted-2);}
+  .filters select{
+    border-radius:999px; padding:11px 18px; font-size:14px; color:var(--forge-text);
+    background:var(--forge-surface); border:1px solid var(--forge-border); outline:none;
+  }
+  .filters select option{background:#12151d;}
+
+  .roles-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  @media (max-width:900px){ .roles-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:640px){ .roles-grid{grid-template-columns:1fr;} }
+
+  .role-card{border-radius:16px; padding:24px; display:flex; flex-direction:column; transition:transform .3s ease;}
+  .role-card:hover{transform:translateY(-5px);}
+  .role-top{display:flex; align-items:flex-start; justify-content:space-between;}
+  .role-icon{width:44px;height:44px;border-radius:12px; display:flex; align-items:center; justify-content:center;
+    background:rgba(255,107,53,.08); border:1px solid var(--forge-border); color:var(--forge-ember);}
+  .role-dept{font-family:var(--font-mono); font-size:11px; color:var(--forge-muted); border:1px solid var(--forge-border); border-radius:999px; padding:4px 10px;}
+  .role-card h3{font-family:var(--font-display); font-size:17px; margin:16px 0 0;}
+  .role-card > p.desc{color:var(--forge-muted); font-size:14px; line-height:1.6; margin:8px 0 0;}
+  .role-skills{display:flex; flex-wrap:wrap; gap:6px; margin-top:16px;}
+  .role-skills span{font-family:var(--font-mono); font-size:11px; color:var(--forge-muted); background:rgba(255,255,255,.02); border:1px solid var(--forge-border); border-radius:6px; padding:4px 8px;}
+  .role-meta{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:20px; font-family:var(--font-mono); font-size:12px; color:var(--forge-muted);}
+  .role-meta div{display:flex; align-items:center; gap:6px;}
+  .role-meta svg{width:14px;height:14px;}
+  .role-apply{
+    margin-top:24px; width:100%; border-radius:999px; padding:11px; font-size:14px; font-weight:500;
+    border:1px solid var(--forge-border-strong); background:rgba(255,255,255,.03); color:var(--forge-text);
+    transition:all .2s ease;
+  }
+  .role-apply:hover{border-color:var(--forge-ember); background:rgba(255,107,53,.1);}
+  .empty-state{grid-column:1/-1; text-align:center; padding:48px; border-radius:16px; color:var(--forge-muted); max-width:420px; margin:0 auto;}
+
+  /* ---------- TIMELINE ---------- */
+  .timeline{position:relative; display:flex; flex-direction:column; gap:32px;}
+  .timeline::before{
+    content:''; position:absolute; left:27px; top:8px; bottom:8px; width:1px;
+    background:linear-gradient(180deg, var(--forge-ember) 0%, var(--forge-steel) 100%); opacity:.35;
+  }
+  @media (min-width:768px){
+    .timeline::before{left:50%; transform:translateX(-50%);}
+  }
+  .step{position:relative; display:flex; gap:20px; align-items:flex-start;}
+  @media (min-width:768px){
+    .step{width:50%;}
+    .step:nth-child(odd){padding-right:40px;}
+    .step:nth-child(even){margin-left:auto; padding-left:40px; flex-direction:row-reverse; text-align:right;}
+  }
+  .step-icon{position:relative; width:56px;height:56px; border-radius:16px; display:flex; align-items:center; justify-content:center; flex-shrink:0; z-index:1; color:var(--forge-ember);}
+  .step-num{position:absolute; top:-8px; right:-8px; width:20px;height:20px; border-radius:50%; background:var(--forge-base-2); font-family:var(--font-mono); font-size:10px; display:flex; align-items:center; justify-content:center; color:var(--forge-muted);}
+  .step h3{font-family:var(--font-display); font-size:17px; margin:0;}
+  .step p{color:var(--forge-muted); font-size:14px; margin:4px 0 0;}
+
+  /* ---------- STATS ---------- */
+  .stats-panel{border-radius:24px; padding:56px 24px;}
+  .stats-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:32px; text-align:center;}
+  @media (max-width:640px){ .stats-grid{grid-template-columns:repeat(2,1fr);} }
+  .stat-value{font-family:var(--font-display); font-weight:600; font-size:44px;}
+  .stat-label{color:var(--forge-muted); font-size:13px; text-transform:uppercase; letter-spacing:.05em; margin-top:8px;}
+
+  /* ---------- FAQ ---------- */
+  .faq-item{border-radius:16px; overflow:hidden; margin-bottom:12px;}
+  .faq-q{width:100%; display:flex; align-items:center; justify-content:space-between; padding:20px 24px; background:transparent; border:none; color:var(--forge-text); font-family:var(--font-display); font-size:15px; font-weight:500; text-align:left;}
+  .faq-q svg{transition:transform .25s ease; color:var(--forge-muted); flex-shrink:0;}
+  .faq-item.open .faq-q svg{transform:rotate(180deg);}
+  .faq-a{max-height:0; overflow:hidden; transition:max-height .3s ease;}
+  .faq-a p{color:var(--forge-muted); font-size:14px; line-height:1.7; padding:0 24px 20px; margin:0;}
+
+  /* ---------- BOTTOM CTA ---------- */
+  .cta-box{position:relative; overflow:hidden; border-radius:24px; padding:72px 32px; text-align:center;
+    background:linear-gradient(135deg, rgba(255,107,53,.14) 0%, rgba(91,143,185,.1) 100%);
+    border:1px solid var(--forge-border);}
+  .cta-glow{position:absolute; top:-96px; left:50%; transform:translateX(-50%); width:260px;height:260px; border-radius:50%; opacity:.4;
+    background:radial-gradient(circle, var(--forge-ember) 0%, transparent 70%); pointer-events:none;}
+  .cta-box h2{font-family:var(--font-display); font-size:34px; margin:0; position:relative;}
+  .cta-box p{color:var(--forge-muted); margin:14px auto 0; max-width:400px; position:relative;}
+  .cta-actions{display:flex; gap:16px; justify-content:center; flex-wrap:wrap; margin-top:36px; position:relative;}
+
+  /* ---------- MODALS ---------- */
+  .modal-overlay{
+    position:fixed; inset:0; z-index:100; display:none; align-items:center; justify-content:center;
+    background:rgba(0,0,0,.7); backdrop-filter:blur(4px); padding:24px;
+  }
+  .modal-overlay.show{display:flex;}
+  .modal-box{
+    background:rgba(18,21,29,.95); border:1px solid var(--forge-border); border-radius:24px;
+    width:100%; max-width:560px; max-height:92vh; display:flex; flex-direction:column;
+    animation:modalIn .3s ease;
+  }
+  @keyframes modalIn{ from{opacity:0; transform:translateY(30px);} to{opacity:1; transform:translateY(0);} }
+  .modal-header{display:flex; align-items:center; justify-content:space-between; padding:20px 24px; border-bottom:1px solid var(--forge-border);}
+  .modal-header h2{font-family:var(--font-display); font-size:18px; margin:0;}
+  .modal-header p{font-family:var(--font-mono); font-size:12px; color:var(--forge-muted); margin:4px 0 0;}
+  .modal-close{background:none; border:none; color:var(--forge-muted);}
+  .modal-close:hover{color:var(--forge-text);}
+  .progress-track{height:4px; background:rgba(255,255,255,.05); width:100%;}
+  .progress-fill{height:100%; background:linear-gradient(90deg,var(--forge-ember),var(--forge-gold)); width:33.33%; transition:width .3s ease;}
+  .modal-body{padding:24px; overflow-y:auto; flex:1;}
+  .modal-footer{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:20px 24px; border-top:1px solid var(--forge-border);}
+
+  .form-step{display:none; grid-template-columns:1fr 1fr; gap:16px;}
+  .form-step.active{display:grid;}
+  @media (max-width:520px){ .form-step{grid-template-columns:1fr;} }
+  .field{display:flex; flex-direction:column;}
+  .field.full{grid-column:1/-1;}
+  .field label{font-size:12px; font-weight:500; color:var(--forge-muted); margin-bottom:6px;}
+  .field input, .field select, .field textarea{
+    width:100%; border-radius:12px; padding:10px 14px; font-size:14px; color:var(--forge-text);
+    background:rgba(255,255,255,.03); border:1px solid var(--forge-border-strong); outline:none;
+    transition:border-color .2s ease, box-shadow .2s ease;
+  }
+  .field input::placeholder, .field textarea::placeholder{color:var(--forge-muted-2);}
+  .field input:focus, .field select:focus, .field textarea:focus{border-color:var(--forge-ember); box-shadow:0 0 0 3px rgba(255,107,53,.15);}
+  .field select option{background:#12151d;}
+  .field textarea{min-height:90px; resize:none;}
+  .field.error input, .field.error select, .field.error textarea, .upload-box.error{border-color:#ff6b6b;}
+  .field-error{color:#ff6b6b; font-size:12px; margin-top:4px;}
+
+  .upload-box{display:flex; align-items:center; gap:10px; border-radius:12px; padding:16px; border:1px dashed var(--forge-border-strong); font-size:14px; cursor:pointer; transition:border-color .2s ease;}
+  .upload-box:hover{border-color:var(--forge-ember);}
+  .upload-box svg{color:var(--forge-muted); flex-shrink:0;}
+  .upload-box .filename{color:var(--forge-text); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .upload-box .placeholder-text{color:var(--forge-muted);}
+
+  .checkbox-row{display:flex; align-items:flex-start; gap:10px; grid-column:1/-1; margin-top:4px;}
+  .checkbox-row input{width:16px;height:16px; accent-color:var(--forge-ember); margin-top:2px; flex-shrink:0;}
+  .checkbox-row label{font-size:14px; color:var(--forge-muted);}
+
+  /* ---------- SUCCESS MODAL ---------- */
+  .success-box{max-width:400px; text-align:center; padding:32px; position:relative;}
+  .success-close{position:absolute; top:16px; right:16px;}
+  .success-emoji{width:64px;height:64px; border-radius:50%; margin:0 auto; display:flex; align-items:center; justify-content:center; font-size:36px;
+    background:radial-gradient(circle, rgba(255,184,77,.25) 0%, transparent 70%);
+    animation:pop .4s ease;}
+  @keyframes pop{0%{transform:scale(0);} 60%{transform:scale(1.1);} 100%{transform:scale(1);}}
+  .success-box h3{font-family:var(--font-display); font-size:20px; margin:20px 0 0;}
+  .success-box p{color:var(--forge-muted); font-size:14px; margin:10px 0 0; line-height:1.6;}
+  .success-box .btn{margin-top:28px; width:100%; justify-content:center;}
+
+  /* ---------- TOASTS ---------- */
+  .toast-stack{position:fixed; bottom:24px; right:24px; z-index:200; display:flex; flex-direction:column; gap:10px; max-width:360px; width:calc(100% - 48px);}
+  .toast{display:flex; align-items:flex-start; gap:10px; border-radius:12px; padding:14px 16px; box-shadow:0 20px 40px -12px rgba(0,0,0,.5); animation:toastIn .25s ease; background:rgba(18,21,29,.95); border:1px solid var(--forge-border);}
+  @keyframes toastIn{ from{opacity:0; transform:translateY(16px) scale(.96);} to{opacity:1; transform:none;} }
+  .toast svg{margin-top:2px; flex-shrink:0;}
+  .toast p{font-size:14px; margin:0; flex:1;}
+  .toast.success svg{color:var(--forge-gold);}
+  .toast.error svg{color:#ff6b6b;}
+  .toast button{background:none; border:none; color:var(--forge-muted);}
+</style>
+</head>
+<body>
+
+<!-- Keep the SAME navbar already used across the rest of the GrowthForge site.
+     This file intentionally has no <nav>/<header> markup of its own —
+     drop your existing navbar include above <main> and your existing
+     footer include below </main>. -->
+
+<main>
+
+  <!-- ================= HERO ================= -->
+  <section class="hero">
+    <div class="hero-glow" aria-hidden="true">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+      <div class="dot-grid"></div>
+    </div>
+    <span class="eyebrow font-mono glass"><span class="dot"></span>Now hiring across 3 tracks</span>
+    <h1 class="font-display">Build The Future<br>With <span class="ember-text">GrowthForge</span></h1>
+    <p class="lede">Join a team helping businesses grow through AI, automation, marketing and technology — on live client work, from day one.</p>
+    <div class="hero-actions">
+      <button class="btn btn-ember" id="hero-apply-btn">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        Apply Now
+      </button>
+      <button class="btn btn-ghost glass" id="hero-view-roles-btn">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M3 6h18M6 12h12M9 18h6"/></svg>
+        View Open Roles
+      </button>
+    </div>
+  </section>
+
+  <!-- ================= WHY JOIN ================= -->
+  <section id="why-join">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2 class="font-display">Why Join GrowthForge</h2>
+        <p>This isn't a résumé line. It's where you learn to actually ship.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card glass reveal">
+          <div class="why-icon" style="background:rgba(255,107,53,.1); border:1px solid rgba(255,107,53,.25);">
+            <svg class="icon" style="stroke:var(--forge-ember)" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+          </div>
+          <h3>Real Startup Experience</h3>
+          <p>Work on live client projects instead of dummy assignments.</p>
+        </div>
+        <div class="why-card glass reveal">
+          <div class="why-icon" style="background:rgba(255,184,77,.1); border:1px solid rgba(255,184,77,.25);">
+            <svg class="icon" style="stroke:var(--forge-gold)" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          </div>
+          <h3>Build Your Portfolio</h3>
+          <p>Complete real projects that strengthen your resume.</p>
+        </div>
+        <div class="why-card glass reveal">
+          <div class="why-icon" style="background:rgba(91,143,185,.12); border:1px solid rgba(91,143,185,.3);">
+            <svg class="icon" style="stroke:var(--forge-steel)" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Mentorship</h3>
+          <p>Learn directly from founders and experienced professionals.</p>
+        </div>
+        <div class="why-card glass reveal">
+          <div class="why-icon" style="background:rgba(255,107,53,.1); border:1px solid rgba(255,107,53,.25);">
+            <svg class="icon" style="stroke:var(--forge-ember)" viewBox="0 0 24 24"><path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/></svg>
+          </div>
+          <h3>Growth Opportunities</h3>
+          <p>Top performers can receive Pre-Placement Offers (PPO), freelance opportunities, or full-time roles.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= OPEN ROLES ================= -->
+  <section id="open-roles">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <h2 class="font-display">Open Roles</h2>
+        <p>Three ways in — start as an intern, take on project work, or join full-time.</p>
+      </div>
+
+      <div class="tabs" id="category-tabs">
+        <button class="tab-btn active" data-category="internship">🎓 Internships</button>
+        <button class="tab-btn" data-category="freelance">💼 Freelance Opportunities</button>
+        <button class="tab-btn" data-category="fulltime">🌟 Full-Time Roles</button>
+      </div>
+
+      <div class="filters">
+        <div class="search-box glass">
+          <svg class="icon" style="width:16px;height:16px;color:var(--forge-muted)" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input type="text" id="role-search" placeholder="Search roles or skills" aria-label="Search open roles">
+        </div>
+        <select id="department-filter" aria-label="Filter by department"></select>
+        <select id="mode-filter" aria-label="Filter by work mode">
+          <option value="All">All work modes</option>
+          <option value="Remote">Remote</option>
+          <option value="Hybrid">Hybrid</option>
+          <option value="On-site">On-site</option>
+        </select>
+      </div>
+
+      <div class="roles-grid" id="roles-grid"></div>
+    </div>
+  </section>
+
+  <!-- ================= APPLICATION PROCESS ================= -->
+  <section id="process">
+    <div class="wrap-mid">
+      <div class="section-head reveal">
+        <h2 class="font-display">Application Process</h2>
+        <p>Five steps, start to finish. Most applicants hear back within a week.</p>
+      </div>
+      <div class="timeline">
+        <div class="step reveal">
+          <div class="step-icon glass"><svg class="icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg><span class="step-num font-mono">1</span></div>
+          <div><h3 class="font-display">Submit Application</h3><p>Tell us about you and pick your track.</p></div>
+        </div>
+        <div class="step reveal">
+          <div class="step-icon glass"><svg class="icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg><span class="step-num font-mono">2</span></div>
+          <div><h3 class="font-display">Resume Screening</h3><p>Our team reviews your profile within days.</p></div>
+        </div>
+        <div class="step reveal">
+          <div class="step-icon glass"><svg class="icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="step-num font-mono">3</span></div>
+          <div><h3 class="font-display">Interview</h3><p>A short conversation, not an interrogation.</p></div>
+        </div>
+        <div class="step reveal">
+          <div class="step-icon glass"><svg class="icon" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg><span class="step-num font-mono">4</span></div>
+          <div><h3 class="font-display">Selection</h3><p>We confirm your role and start date.</p></div>
+        </div>
+        <div class="step reveal">
+          <div class="step-icon glass"><svg class="icon" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg><span class="step-num font-mono">5</span></div>
+          <div><h3 class="font-display">Onboarding</h3><p>You're in — meet the team and get to work.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STATS ================= -->
+  <section>
+    <div class="wrap">
+      <div class="stats-panel glass reveal">
+        <div class="stats-grid">
+          <div><div class="stat-value font-display" data-target="30" data-suffix="+">0</div><div class="stat-label">Projects Delivered</div></div>
+          <div><div class="stat-value font-display" data-target="100" data-suffix="+">0</div><div class="stat-label">Businesses Helped</div></div>
+          <div><div class="stat-value font-display" data-target="20" data-suffix="+">0</div><div class="stat-label">Interns Trained</div></div>
+          <div><div class="stat-value font-display" data-target="95" data-suffix="%">0</div><div class="stat-label">Placement Success</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FAQ ================= -->
+  <section id="faq">
+    <div class="wrap-narrow">
+      <div class="section-head reveal"><h2 class="font-display">Frequently Asked Questions</h2></div>
+      <div id="faq-list"></div>
+    </div>
+  </section>
+
+  <!-- ================= BOTTOM CTA ================= -->
+  <section>
+    <div class="wrap-mid">
+      <div class="cta-box reveal">
+        <div class="cta-glow" aria-hidden="true"></div>
+        <h2 class="font-display">Ready to build something amazing?</h2>
+        <p>Join GrowthForge today and accelerate your career.</p>
+        <div class="cta-actions">
+          <button class="btn btn-ember" id="cta-apply-btn">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+            Apply Now
+          </button>
+          <a href="#contact" class="btn btn-ghost glass">
+            <svg class="icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Contact Us
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Keep your existing footer include here. -->
+
+<!-- ================= APPLICATION FORM MODAL ================= -->
+<div class="modal-overlay" id="form-overlay" role="dialog" aria-modal="true" aria-labelledby="form-title">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div>
+        <h2 id="form-title" class="font-display">Apply Internship</h2>
+        <p class="font-mono" id="form-step-label">Step 1 of 3 — Your Details</p>
+      </div>
+      <button class="modal-close" id="form-close-btn" aria-label="Close application form">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+
+    <form class="modal-body" id="application-form" novalidate>
+      <!-- Step 1 -->
+      <div class="form-step active" data-step="0">
+        <div class="field full">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" placeholder="Jordan Rivera">
+          <span class="field-error"></span>
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" placeholder="you@email.com">
+          <span class="field-error"></span>
+        </div>
+        <div class="field">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" placeholder="+91 98765 43210">
+          <span class="field-error"></span>
+        </div>
+        <div class="field">
+          <label for="college">College / University</label>
+          <input type="text" id="college" placeholder="Your institution">
+          <span class="field-error"></span>
+        </div>
+        <div class="field">
+          <label for="degree">Degree</label>
+          <input type="text" id="degree" placeholder="B.Tech, BBA, etc.">
+          <span class="field-error"></span>
+        </div>
+        <div class="field">
+          <label for="currentYear">Current Year</label>
+          <input type="text" id="currentYear" placeholder="2nd Year">
+          <span class="field-error"></span>
+        </div>
+        <div class="field">
+          <label for="location">Location</label>
+          <input type="text" id="location" placeholder="City, State">
+          <span class="field-error"></span>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="form-step" data-step="1">
+        <div class="field">
+          <label for="linkedin">LinkedIn URL</label>
+          <input type="url" id="linkedin" placeholder="https://linkedin.com/in/you">
+          <span class="field-error"></span>
+        </div>
+        <div class="field">
+          <label for="github">GitHub URL (optional)</label>
+          <input type="url" id="github" placeholder="https://github.com/you">
+          <span class="field-error"></span>
+        </div>
+        <div class="field full">
+          <label for="portfolio">Portfolio URL (optional)</label>
+          <input type="url" id="portfolio" placeholder="https://yourportfolio.com">
+          <span class="field-error"></span>
+        </div>
+        <div class="field full">
+          <label for="roleSelect">Role Applying For</label>
+          <select id="roleSelect"></select>
+          <span class="field-error"></span>
+        </div>
+        <div class="field full">
+          <label for="resumeInput">Resume (PDF only)</label>
+          <label class="upload-box" id="upload-box" for="resumeInput">
+            <svg class="icon" viewBox="0 0 24 24" id="upload-icon"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            <span class="placeholder-text" id="upload-label">Click to upload your resume (PDF, max 5MB)</span>
+          </label>
+          <input type="file" id="resumeInput" accept="application/pdf" style="display:none">
+          <span class="field-error"></span>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="form-step" data-step="2">
+        <div class="field full">
+          <label for="coverLetter">Cover Letter</label>
+          <textarea id="coverLetter" placeholder="A short note introducing yourself"></textarea>
+          <span class="field-error"></span>
+        </div>
+        <div class="field full">
+          <label for="motivation">Why do you want to join GrowthForge?</label>
+          <textarea id="motivation" placeholder="What draws you to this team"></textarea>
+          <span class="field-error"></span>
+        </div>
+        <div class="field">
+          <label for="availability">Availability</label>
+          <input type="text" id="availability" placeholder="Full-time, 6 hrs/day, weekends...">
+          <span class="field-error"></span>
+        </div>
+        <div class="field">
+          <label for="joiningDate">Expected Joining Date</label>
+          <input type="date" id="joiningDate">
+          <span class="field-error"></span>
+        </div>
+        <div class="checkbox-row">
+          <input type="checkbox" id="agreeTerms">
+          <label for="agreeTerms">I agree to the Privacy Policy and Terms.</label>
+        </div>
+        <span class="field-error" id="agree-error" style="grid-column:1/-1;"></span>
+      </div>
+    </form>
+
+    <div class="modal-footer">
+      <button class="btn btn-ghost" id="form-back-btn">
+        <svg class="icon" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+        Cancel
+      </button>
+      <button class="btn btn-ember" id="form-next-btn">
+        Next
+        <svg class="icon" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= SUCCESS MODAL ================= -->
+<div class="modal-overlay" id="success-overlay" role="dialog" aria-modal="true" aria-labelledby="success-title">
+  <div class="modal-box success-box">
+    <button class="modal-close success-close" id="success-close-btn" aria-label="Close">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="success-emoji">🎉</div>
+    <h3 id="success-title" class="font-display">Application Submitted Successfully!</h3>
+    <p>Our team will review your profile and contact you shortly.</p>
+    <button class="btn btn-ember" id="success-done-btn">Done</button>
+  </div>
+</div>
+
+<!-- ================= TOASTS ================= -->
+<div class="toast-stack" id="toast-stack"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="./app.js?v=20260710"></script>
+<script>
+/* =========================================================
+   GrowthForge Careers — vanilla JS
+   No framework, no build step. Everything below is organized
+   into clearly labeled sections so any piece can be swapped
+   out independently (e.g. ROLES data, or the Supabase call).
+========================================================= */
+
+/* ---------------- ROLE DATA ----------------
+   Single source of truth for role cards, filters, and the
+   "Role Applying For" dropdown. Restructured into 3 tracks;
+   Sales is included under Internships and Full-Time. */
+const ROLES = [
+  // Internships
+  { id:"intern-sales", category:"internship", department:"Sales", title:"Business Development & Sales Intern",
+    desc:"Own outbound conversations with real prospects and help close deals that fund the next sprint.",
+    skills:["Communication","Negotiation","Lead Generation"], duration:"3 Months", mode:"Remote", comp:"Performance Based", positions:10,
+    icon:'<path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/>' },
+  { id:"intern-seo", category:"internship", department:"Marketing", title:"SEO Intern",
+    desc:"Push live client sites up the rankings with real keyword and technical SEO work.",
+    skills:["Keyword Research","On-page SEO","Technical SEO","Google Search Console"], duration:"3 Months", mode:"Remote", comp:"Performance Based", positions:5,
+    icon:'<circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>' },
+  { id:"intern-dm", category:"internship", department:"Marketing", title:"Digital Marketing Intern",
+    desc:"Run real ad budgets and content calendars for live client accounts, not case studies.",
+    skills:["Social Media","Meta Ads","Google Ads","Content Marketing"], duration:"3 Months", mode:"Remote", comp:"Performance Based", positions:8,
+    icon:'<path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.2-3"/>' },
+  { id:"intern-web", category:"internship", department:"Engineering", title:"Web Development Intern",
+    desc:"Ship production features on real client and internal products, reviewed by senior engineers.",
+    skills:["HTML","CSS","JavaScript","React","Supabase"], duration:"4 Months", mode:"Remote", comp:"Performance Based", positions:4,
+    icon:'<polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>' },
+  { id:"intern-ai", category:"internship", department:"Engineering", title:"AI / Tech Intern",
+    desc:"Build automations and AI-powered tools that plug directly into client workflows.",
+    skills:["Python","APIs","AI Tools","Automation","Prompt Engineering"], duration:"4 Months", mode:"Remote", comp:"Performance Based", positions:6,
+    icon:'<rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/>' },
+  { id:"intern-design", category:"internship", department:"Design", title:"Graphic Design Intern",
+    desc:"Design brand systems and campaign creative that ship to real client audiences.",
+    skills:["Figma","Canva","Adobe Illustrator","Brand Design"], duration:"3 Months", mode:"Remote", comp:"Performance Based", positions:5,
+    icon:'<circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.9 0 1.6-.7 1.6-1.6 0-.4-.2-.8-.4-1.1-.2-.3-.4-.7-.4-1.1 0-.9.7-1.6 1.6-1.6h1.9c3 0 5.7-2.7 5.7-5.7C22 6.1 17.5 2 12 2z"/>' },
+
+  // Freelance
+  { id:"freelance-seo", category:"freelance", department:"Marketing", title:"SEO Specialist",
+    desc:"Take ownership of SEO strategy for a portfolio of client sites on a project basis.",
+    skills:["Technical SEO","Link Building","Analytics","Reporting"], duration:"Project Based", mode:"Remote", comp:"Per Project", positions:3,
+    icon:'<circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>' },
+  { id:"freelance-writer", category:"freelance", department:"Marketing", title:"Content Writer",
+    desc:"Write website copy, blogs, and campaign content for a rotating slate of clients.",
+    skills:["Copywriting","SEO Writing","Research","Editing"], duration:"Project Based", mode:"Remote", comp:"Per Project", positions:4,
+    icon:'<path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/>' },
+  { id:"freelance-uiux", category:"freelance", department:"Design", title:"UI/UX Designer",
+    desc:"Design interfaces and user flows for client products end-to-end, from wireframe to handoff.",
+    skills:["Figma","User Research","Prototyping","Design Systems"], duration:"Project Based", mode:"Remote", comp:"Per Project", positions:2,
+    icon:'<path d="M17 3a2.83 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/>' },
+  { id:"freelance-wp", category:"freelance", department:"Engineering", title:"WordPress Developer",
+    desc:"Build and maintain WordPress sites for clients who need reliable, fast turnarounds.",
+    skills:["WordPress","PHP","Elementor","Performance Tuning"], duration:"Project Based", mode:"Remote", comp:"Per Project", positions:3,
+    icon:'<circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>' },
+
+  // Full-Time
+  { id:"fulltime-growth", category:"fulltime", department:"Marketing", title:"Growth Manager",
+    desc:"Own the growth roadmap across client accounts and lead a small pod of specialists.",
+    skills:["Growth Strategy","Analytics","Team Leadership","Client Management"], duration:"Full Time", mode:"Hybrid", comp:"CTC Based", positions:1,
+    icon:'<path d="M23 6l-9.5 9.5-5-5L1 18"/><path d="M17 6h6v6"/>' },
+  { id:"fulltime-bde", category:"fulltime", department:"Sales", title:"Business Development Executive",
+    desc:"Drive new client acquisition and manage the full sales cycle from outreach to close.",
+    skills:["B2B Sales","Negotiation","CRM","Pipeline Management"], duration:"Full Time", mode:"Hybrid", comp:"CTC Based", positions:2,
+    icon:'<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>' },
+  { id:"fulltime-perf", category:"fulltime", department:"Marketing", title:"Performance Marketer",
+    desc:"Run and optimize paid acquisition across platforms for a portfolio of client budgets.",
+    skills:["Meta Ads","Google Ads","Analytics","A/B Testing"], duration:"Full Time", mode:"Remote", comp:"CTC Based", positions:2,
+    icon:'<line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>' },
+  { id:"fulltime-fullstack", category:"fulltime", department:"Engineering", title:"Full-Stack Developer",
+    desc:"Build and ship the core GrowthForge product and client platforms end-to-end.",
+    skills:["React","Next.js","Node.js","Supabase","TypeScript"], duration:"Full Time", mode:"Remote", comp:"CTC Based", positions:2,
+    icon:'<path d="M12.89 1.45l8 4A2 2 0 0 1 22 7.24v9.53a2 2 0 0 1-1.11 1.79l-8 4a2 2 0 0 1-1.79 0l-8-4a2 2 0 0 1-1.1-1.8V7.24a2 2 0 0 1 1.11-1.79l8-4a2 2 0 0 1 1.78 0z"/><polyline points="2.32 6.16 12 11 21.68 6.16"/><line x1="12" y1="22.76" x2="12" y2="11"/>' },
+];
+
+const CATEGORY_LABELS = { internship:"🎓 Internships", freelance:"💼 Freelance Opportunities", fulltime:"🌟 Full-Time Roles" };
+
+/* ---------------- ICON HELPER ---------------- */
+function iconSvg(pathContent, cls){
+  return '<svg class="'+(cls||'icon')+'" viewBox="0 0 24 24">'+pathContent+'</svg>';
+}
+
+/* ---------------- ROLES SECTION ---------------- */
+let activeCategory = "internship";
+let searchQuery = "";
+let activeDept = "All";
+let activeMode = "All";
+
+const grid = document.getElementById("roles-grid");
+const deptFilter = document.getElementById("department-filter");
+const modeFilter = document.getElementById("mode-filter");
+const searchInput = document.getElementById("role-search");
+
+function departmentsFor(category){
+  const set = new Set(ROLES.filter(r => r.category === category).map(r => r.department));
+  return ["All", ...Array.from(set)];
+}
+
+function renderDeptFilter(){
+  const depts = departmentsFor(activeCategory);
+  deptFilter.innerHTML = depts.map(d => `<option value="${d}">${d === "All" ? "All departments" : d}</option>`).join("");
+  activeDept = "All";
+}
+
+function meta(iconPath, text){
+  return `<div>${iconSvg(iconPath)}${text}</div>`;
+}
+
+function renderRoles(){
+  const filtered = ROLES.filter(r => {
+    if (r.category !== activeCategory) return false;
+    if (activeDept !== "All" && r.department !== activeDept) return false;
+    if (activeMode !== "All" && r.mode !== activeMode) return false;
+    if (searchQuery.trim()){
+      const q = searchQuery.toLowerCase();
+      const hay = (r.title + " " + r.skills.join(" ")).toLowerCase();
+      if (!hay.includes(q)) return false;
+    }
+    return true;
+  });
+
+  if (filtered.length === 0){
+    grid.innerHTML = `<div class="empty-state glass">No roles match those filters right now. Try a different department or work mode.</div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(r => `
+    <div class="role-card glass reveal in">
+      <div class="role-top">
+        <div class="role-icon">${iconSvg(r.icon)}</div>
+        <span class="role-dept font-mono">${r.department}</span>
+      </div>
+      <h3 class="font-display">${r.title}</h3>
+      <p class="desc">${r.desc}</p>
+      <div class="role-skills">${r.skills.map(s => `<span>${s}</span>`).join("")}</div>
+      <div class="role-meta">
+        ${meta('<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>', r.duration)}
+        ${meta('<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>', r.mode)}
+        ${meta('<rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/>', r.comp)}
+        ${meta('<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>', r.positions + " open")}
+      </div>
+      <button class="role-apply" data-role-id="${r.id}">Apply for this role</button>
+    </div>
+  `).join("");
+
+  grid.querySelectorAll(".role-apply").forEach(btn => {
+    btn.addEventListener("click", () => openForm(btn.dataset.roleId));
+  });
+}
+
+document.querySelectorAll(".tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    activeCategory = btn.dataset.category;
+    renderDeptFilter();
+    renderRoles();
+  });
+});
+
+searchInput.addEventListener("input", (e) => { searchQuery = e.target.value; renderRoles(); });
+deptFilter.addEventListener("change", (e) => { activeDept = e.target.value; renderRoles(); });
+modeFilter.addEventListener("change", (e) => { activeMode = e.target.value; renderRoles(); });
+
+renderDeptFilter();
+renderRoles();
+
+/* ---------------- FAQ ---------------- */
+const FAQS = [
+  { q:"Is this internship paid?", a:"Internship and freelance roles are performance-based — you earn from the real client work you deliver. Full-time roles come with a fixed CTC, discussed during the interview." },
+  { q:"Will I receive a certificate?", a:"Yes. Every intern who completes their term receives a certificate along with a performance letter you can add to your portfolio or resume." },
+  { q:"Can beginners apply?", a:"Yes. We look for willingness to learn and ownership over raw experience. You'll be paired with a mentor from day one to help you ramp up." },
+  { q:"Is it remote?", a:"Most internship and freelance roles are remote. A few full-time roles are hybrid — each role card shows its exact work mode." },
+  { q:"Will there be PPO opportunities?", a:"Yes. Top-performing interns regularly receive Pre-Placement Offers, ongoing freelance work, or a direct offer for a full-time role." },
+];
+const faqList = document.getElementById("faq-list");
+faqList.innerHTML = FAQS.map((f, i) => `
+  <div class="faq-item glass ${i===0 ? 'open' : ''}">
+    <button class="faq-q" aria-expanded="${i===0}">
+      ${f.q}
+      ${iconSvg('<polyline points="6 9 12 15 18 9"/>')}
+    </button>
+    <div class="faq-a"><p>${f.a}</p></div>
+  </div>
+`).join("");
+
+faqList.querySelectorAll(".faq-item").forEach(item => {
+  const q = item.querySelector(".faq-q");
+  const a = item.querySelector(".faq-a");
+  if (item.classList.contains("open")) a.style.maxHeight = a.scrollHeight + "px";
+  q.addEventListener("click", () => {
+    const isOpen = item.classList.contains("open");
+    faqList.querySelectorAll(".faq-item").forEach(other => {
+      other.classList.remove("open");
+      other.querySelector(".faq-q").setAttribute("aria-expanded", "false");
+      other.querySelector(".faq-a").style.maxHeight = null;
+    });
+    if (!isOpen){
+      item.classList.add("open");
+      q.setAttribute("aria-expanded", "true");
+      a.style.maxHeight = a.scrollHeight + "px";
+    }
+  });
+});
+
+/* ---------------- STATS COUNT-UP ---------------- */
+function countUp(el){
+  const target = parseInt(el.dataset.target, 10);
+  const suffix = el.dataset.suffix || "";
+  const duration = 1400;
+  const start = performance.now();
+  function tick(now){
+    const progress = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(eased * target) + suffix;
+    if (progress < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+const statEls = document.querySelectorAll(".stat-value");
+if ("IntersectionObserver" in window){
+  const statObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      statObserver.unobserve(entry.target);
+      countUp(entry.target);
+    });
+  }, { threshold: 0.4 });
+  statEls.forEach(el => statObserver.observe(el));
+} else {
+  statEls.forEach(countUp);
+}
+
+/* ---------------- SCROLL REVEAL ---------------- */
+const revealEls = document.querySelectorAll(".reveal");
+if ("IntersectionObserver" in window){
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add("in");
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => revealObserver.observe(el));
+} else {
+  revealEls.forEach(el => el.classList.add("in"));
+}
+
+/* ---------------- TOASTS ---------------- */
+const toastStack = document.getElementById("toast-stack");
+function showToast(kind, text){
+  const el = document.createElement("div");
+  el.className = "toast " + kind;
+  const icon = kind === "success"
+    ? '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/>'
+    : '<circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>';
+  el.innerHTML = `${iconSvg(icon, "icon")}<p>${text}</p><button aria-label="Dismiss">${iconSvg('<path d="M18 6L6 18M6 6l12 12"/>', "icon")}</button>`;
+  toastStack.appendChild(el);
+  const remove = () => el.remove();
+  el.querySelector("button").addEventListener("click", remove);
+  setTimeout(remove, 4500);
+}
+
+/* ---------------- APPLICATION FORM ---------------- */
+const formOverlay = document.getElementById("form-overlay");
+const successOverlay = document.getElementById("success-overlay");
+const form = document.getElementById("application-form");
+const steps = Array.from(form.querySelectorAll(".form-step"));
+const stepLabel = document.getElementById("form-step-label");
+const progressFill = document.getElementById("progress-fill");
+const backBtn = document.getElementById("form-back-btn");
+const nextBtn = document.getElementById("form-next-btn");
+const roleSelect = document.getElementById("roleSelect");
+const resumeInput = document.getElementById("resumeInput");
+const uploadBox = document.getElementById("upload-box");
+const uploadLabel = document.getElementById("upload-label");
+
+const STEP_TITLES = ["Your Details", "Role & Links", "About You"];
+let currentStep = 0;
+let resumeFile = null;
+let submitting = false;
+
+// Populate role dropdown, grouped by category
+roleSelect.innerHTML = '<option value="">Select a role</option>' +
+  ["internship","freelance","fulltime"].map(cat => {
+    const opts = ROLES.filter(r => r.category === cat).map(r => `<option value="${r.id}">${r.title}</option>`).join("");
+    return `<optgroup label="${CATEGORY_LABELS[cat]}">${opts}</optgroup>`;
+  }).join("");
+
+function openForm(preselectRoleId){
+  form.reset();
+  resumeFile = null;
+  uploadLabel.textContent = "Click to upload your resume (PDF, max 5MB)";
+  uploadLabel.className = "placeholder-text";
+  clearErrors();
+  currentStep = 0;
+  showStep(0);
+  if (preselectRoleId) roleSelect.value = preselectRoleId;
+  else roleSelect.value = "";
+  formOverlay.classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+function closeForm(){
+  formOverlay.classList.remove("show");
+  document.body.style.overflow = "";
+}
+
+document.getElementById("hero-apply-btn").addEventListener("click", () => openForm(null));
+document.getElementById("cta-apply-btn").addEventListener("click", () => openForm(null));
+document.getElementById("hero-view-roles-btn").addEventListener("click", () => {
+  document.getElementById("open-roles").scrollIntoView({ behavior:"smooth" });
+});
+document.getElementById("form-close-btn").addEventListener("click", closeForm);
+
+function showStep(i){
+  steps.forEach(s => s.classList.toggle("active", parseInt(s.dataset.step,10) === i));
+  stepLabel.textContent = `Step ${i+1} of ${STEP_TITLES.length} — ${STEP_TITLES[i]}`;
+  progressFill.style.width = ((i+1)/STEP_TITLES.length*100) + "%";
+  backBtn.innerHTML = i === 0
+    ? iconSvg('<path d="M15 18l-6-6 6-6"/>') + "Cancel"
+    : iconSvg('<path d="M15 18l-6-6 6-6"/>') + "Back";
+  if (i === STEP_TITLES.length - 1){
+    nextBtn.innerHTML = "Apply Internship";
+  } else {
+    nextBtn.innerHTML = "Next" + iconSvg('<path d="M9 18l6-6-6-6"/>');
+  }
+}
+
+function setError(fieldId, message){
+  const field = document.getElementById(fieldId).closest(".field");
+  field.classList.add("error");
+  field.querySelector(".field-error").textContent = message;
+}
+function clearErrors(){
+  form.querySelectorAll(".field").forEach(f => {
+    f.classList.remove("error");
+    const err = f.querySelector(".field-error");
+    if (err) err.textContent = "";
+  });
+  uploadBox.classList.remove("error");
+  document.getElementById("agree-error").textContent = "";
+}
+
+function val(id){ return document.getElementById(id).value.trim(); }
+
+function validateStep(step){
+  clearErrors();
+  let valid = true;
+  const urlRe = /^https?:\/\/.+/;
+
+  if (step === 0){
+    if (!val("fullName")) { setError("fullName","Required"); valid = false; }
+    if (!/^\S+@\S+\.\S+$/.test(val("email"))) { setError("email","Enter a valid email"); valid = false; }
+    if (!/^[\d+\-\s()]{7,15}$/.test(val("phone"))) { setError("phone","Enter a valid phone number"); valid = false; }
+    if (!val("college")) { setError("college","Required"); valid = false; }
+    if (!val("degree")) { setError("degree","Required"); valid = false; }
+    if (!val("currentYear")) { setError("currentYear","Required"); valid = false; }
+    if (!val("location")) { setError("location","Required"); valid = false; }
+  }
+
+  if (step === 1){
+    if (!urlRe.test(val("linkedin"))) { setError("linkedin","Enter a valid URL"); valid = false; }
+    if (val("github") && !urlRe.test(val("github"))) { setError("github","Enter a valid URL"); valid = false; }
+    if (val("portfolio") && !urlRe.test(val("portfolio"))) { setError("portfolio","Enter a valid URL"); valid = false; }
+    if (!roleSelect.value) { setError("roleSelect","Select a role"); valid = false; }
+    if (!resumeFile) { uploadBox.classList.add("error"); setError("resumeInput","Upload your resume (PDF)"); valid = false; }
+  }
+
+  if (step === 2){
+    if (!val("coverLetter")) { setError("coverLetter","Required"); valid = false; }
+    if (!val("motivation")) { setError("motivation","Required"); valid = false; }
+    if (!val("availability")) { setError("availability","Required"); valid = false; }
+    if (!val("joiningDate")) { setError("joiningDate","Required"); valid = false; }
+    if (!document.getElementById("agreeTerms").checked) {
+      document.getElementById("agree-error").textContent = "You must agree to continue";
+      valid = false;
+    }
+  }
+  return valid;
+}
+
+uploadBox.addEventListener("click", (e) => { /* label already triggers input */ });
+resumeInput.addEventListener("change", () => {
+  const file = resumeInput.files[0];
+  if (!file) return;
+  if (file.type !== "application/pdf"){
+    setError("resumeInput","PDF files only");
+    resumeInput.value = "";
+    return;
+  }
+  if (file.size > 5 * 1024 * 1024){
+    setError("resumeInput","Max file size is 5MB");
+    resumeInput.value = "";
+    return;
+  }
+  resumeFile = file;
+  uploadLabel.textContent = file.name;
+  uploadLabel.className = "filename";
+  uploadBox.classList.remove("error");
+});
+
+nextBtn.addEventListener("click", async () => {
+  if (currentStep === 0){
+    if (backBtn.textContent.includes("Cancel")) {} // no-op, handled by click below
+  }
+  if (!validateStep(currentStep)) return;
+
+  if (currentStep < STEP_TITLES.length - 1){
+    currentStep++;
+    showStep(currentStep);
+  } else {
+    await submitApplication();
+  }
+});
+
+backBtn.addEventListener("click", () => {
+  if (currentStep === 0){ closeForm(); return; }
+  currentStep--;
+  showStep(currentStep);
+});
+
+async function submitApplication(){
+  if (submitting) return;
+  submitting = true;
+  nextBtn.disabled = true;
+  const originalHtml = nextBtn.innerHTML;
+  nextBtn.innerHTML = "Submitting...";
+
+  const selectedRole = ROLES.find(r => r.id === roleSelect.value);
+
+  const payload = {
+    full_name: val("fullName"),
+    email: val("email"),
+    phone: val("phone"),
+    college: val("college"),
+    degree: val("degree"),
+    current_year: val("currentYear"),
+    location: val("location"),
+    linkedin: val("linkedin"),
+    github: val("github") || null,
+    portfolio: val("portfolio") || null,
+    role: selectedRole ? selectedRole.title : roleSelect.value,
+    category: selectedRole ? selectedRole.category : null,
+    cover_letter: val("coverLetter"),
+    motivation: val("motivation"),
+    availability: val("availability"),
+    joining_date: val("joiningDate"),
+    resume_url: null,
+    status: "Applied",
+  };
+
+  try {
+    const supabaseClient = window.supabaseClient;
+
+    if (supabaseClient) {
+      if (resumeFile) {
+        const fileExt = resumeFile.name.split(".").pop();
+        const filePath = `${Date.now()}-${payload.full_name.replace(/\s+/g,"-").toLowerCase()}.${fileExt}`;
+
+        try {
+          const { error: uploadError } = await supabaseClient.storage.from("resumes").upload(filePath, resumeFile, {
+            cacheControl: "3600",
+            upsert: false,
+          });
+
+          if (!uploadError) {
+            const { data: publicUrlData } = supabaseClient.storage.from("resumes").getPublicUrl(filePath);
+            payload.resume_url = publicUrlData.publicUrl;
+          } else {
+            console.warn("Resume upload skipped:", uploadError);
+          }
+        } catch (uploadErr) {
+          console.warn("Resume upload skipped:", uploadErr);
+        }
+      }
+
+      const { error: insertError } = await supabaseClient.from("internship_applications").insert(payload);
+      if (insertError) throw insertError;
+    } else {
+      console.warn("No Supabase client found — simulating submission.", payload);
+      await new Promise(res => setTimeout(res, 900));
+    }
+
+    showToast("success", "Application submitted — check your email for confirmation.");
+    closeForm();
+    successOverlay.classList.add("show");
+  } catch (err){
+    console.error("Application submission failed:", err);
+    showToast("error", "Something went wrong submitting your application. Please try again.");
+  } finally {
+    submitting = false;
+    nextBtn.disabled = false;
+    nextBtn.innerHTML = originalHtml;
+  }
+}
+
+document.getElementById("success-close-btn").addEventListener("click", () => successOverlay.classList.remove("show"));
+document.getElementById("success-done-btn").addEventListener("click", () => successOverlay.classList.remove("show"));
+
+// Close modals on overlay click or Escape
+[formOverlay, successOverlay].forEach(overlay => {
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay){
+      overlay.classList.remove("show");
+      document.body.style.overflow = "";
+    }
+  });
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape"){
+    formOverlay.classList.remove("show");
+    successOverlay.classList.remove("show");
+    document.body.style.overflow = "";
+  }
+});
+</script>
+</body>
+</html>
